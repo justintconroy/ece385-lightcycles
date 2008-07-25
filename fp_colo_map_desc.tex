@@ -1,0 +1,26 @@
+\documentclass[12pt,letterpaper] {article}
+\RequirePackage[top=1in,bottom=1in,left=1in,right=1in,nofoot,nohead]{geometry}
+\usepackage{setspace}
+\usepackage{graphicx}
+\pagestyle{empty}
+
+
+\begin{document}
+
+\noindent Justin Conroy\\
+David Ho\\
+Final Project Proposal (addendum)\\
+July 16, 2008\\
+\\
+
+\begin{center} \LARGE{Description of Color Mapper}\\ \end{center}
+
+The color mapper entity will be responsible for telling the VGA controller what color each pixel should be. We will need to draw an arena and a heads up display (HUD) on the monitor. The arena will be an all black square, initially. It will be divided into a grid with the color of each square on the grid stored in an array in color mapper. When a light cycle goes over a position on the grid, the color of that position changes to that of the light cycle and stays that color for the remainder of the round. It needs to stay the same color to produce the trails which form behind the light cycles. The Color Mapper will also display how many lives each player has left (in the HUD) and will also display messages to the user(Game Over, You Win, Start Game, etc.). The other entities will also be able to query color mapper for the color of a position in the array. This is used for crash detection.\\
+
+\begin{center} \LARGE{Description of Crash Detection}\\ \end{center}
+Vehicle control will update crash detection with the new position and crash detection will query color mapper to find out if that position is clear(i.e. the light cycle is not moving into a wall or trail). If the position is all clear, crash detection sends it on to color mapper to update that position. If the next position is already occupied (i.e. not black, the color of the arena), crash detection will report a crash to game control and it will not send the new position to color mapper.\\
+
+\begin{center} \LARGE{Description of Computer Velocity Control}\\\end{center}
+In its most basic form, the computer opponent will have a predefined path to follow. If we have enough time, we will implement some aritificial intelligence to control the computer opponent. Another feature we would like to implement but will probably not be able to implement is a multiplayer mode, where another human player controls the opponent.\\
+
+\end{document}

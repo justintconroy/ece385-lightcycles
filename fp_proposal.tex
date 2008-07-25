@@ -1,0 +1,25 @@
+\documentclass[12pt,letterpaper] {article}
+\RequirePackage[top=1in,bottom=1in,left=1in,right=1in,nofoot,nohead]{geometry}
+\usepackage{setspace}
+\usepackage{graphicx}
+\pagestyle{empty}
+
+
+\begin{document}
+
+\noindent Justin Conroy\\
+David Ho\\
+Final Project Proposal\\
+July 14, 2008\\
+\\
+
+\begin{center} \LARGE{Light Cycles}\\ \end{center}
+
+\indent For our final project, we will implement the game Light Cycles from the movie and arcade game, TRON. In this game, the player must guide a Light Cycle in an arena. As the player's Light Cycle moves through the arena, a wall of light, or trail forms behind him. The player must avoid hitting walls and trails created by his Light Cycle or that of his opponent. The opponent has the same objective as the player. For our implementation, the opponent may be controlled differently depending on what we have time to implement. At the very least, the opponent will move along a predefined path (similar to the original arcade game). We hope to at least be able to implement a simple AI for controlling the opponent or to implement a multiplayer mode somehow (maybe with ethernet or RS-232 connector to another board). The player and his opponent will be given three lives each. When the player or the opponent crashes into a wall or trail, he will lose a life and a new round will start. If the two Light Cycles collide head on, both players will lose a life. If both players are on their last life, then another round will be played. For the most part the Light Cycle will move at a constant velocity. However, there are ways for the player to change his speed. The most direct way is for the player to apply the brakes. This will cause the player to deccelerate. Note that the player can never come to a full stop. There is always a minimum speed. Turning will also slow the player down a small amount. Driving along the outside wall of the arena will also cause the player to decelerate. The player can also accelerate by driving close to another trail (parallel to it). This can be either his trail or his opponent's trail. The player wins the game when his opponent has no more lives.\\
+\indent The player will be able to control his Light Cycle with keys on a keyboard. The game arena will be displayed on a VGA monitor. The player will have keys to turn the Light Cycle right or left relative to the direction it is currently moving. The Light Cycle can only make turns at right angles.\\
+\indent Currently we hope to implement some additional features if we have enough time. These features include some form of multiplayer (on a single FPGA or by implementing some protocol to use two FPGAs simultaneously), allowing the player to choose which keys on the keyboard control the Light Cycle, allowing the player to choose the color of his Light Cycle, and possibly other features which would be really cool to implement but probably not actually realistic with our given timeframe.\\
+\newline
+\noindent See Also:\\
+\indent http://en.wikipedia.org/wiki/Tron\_\%28arcade\_game\%29\#4.\_Light\_Cycles\\
+\indent http://www.armagetronad.net/\\
+\end{document}

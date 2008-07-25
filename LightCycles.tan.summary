@@ -1,0 +1,66 @@
+--------------------------------------------------------------------------------------
+Timing Analyzer Summary
+--------------------------------------------------------------------------------------
+
+Type           : Worst-case tsu
+Slack          : N/A
+Required Time  : None
+Actual Time    : 4.236 ns
+From           : ps2data
+To             : keyboard:keyboard_entity|reg_11:regA|reg_value[10]
+From Clock     : --
+To Clock       : clk
+Failed Paths   : 0
+
+Type           : Worst-case tco
+Slack          : N/A
+Required Time  : None
+Actual Time    : 28.510 ns
+From           : vga_controller:VGA_entity|hc[2]
+To             : Blue[0]
+From Clock     : clk
+To Clock       : --
+Failed Paths   : 0
+
+Type           : Worst-case th
+Slack          : N/A
+Required Time  : None
+Actual Time    : -3.978 ns
+From           : ps2clk
+To             : keyboard:keyboard_entity|edge_detector:ps_clk_edge|d_ff:DA|q
+From Clock     : --
+To Clock       : clk
+Failed Paths   : 0
+
+Type           : Clock Setup: 'clk'
+Slack          : N/A
+Required Time  : None
+Actual Time    : 44.17 MHz ( period = 22.640 ns )
+From           : player_velocity_control:player1_velocity|direction:directional|State.left~latch
+To             : crash_detect:player1_crash_detect|state.check
+From Clock     : clk
+To Clock       : clk
+Failed Paths   : 0
+
+Type           : Clock Hold: 'clk'
+Slack          : Not operational: Clock Skew > Data Delay
+Required Time  : None
+Actual Time    : N/A
+From           : player_velocity_control:player1_velocity|key_DIR[1]
+To             : player_velocity_control:player1_velocity|direction:directional|State.up~latch
+From Clock     : clk
+To Clock       : clk
+Failed Paths   : 69
+
+Type           : Total number of failed paths
+Slack          : 
+Required Time  : 
+Actual Time    : 
+From           : 
+To             : 
+From Clock     : 
+To Clock       : 
+Failed Paths   : 69
+
+--------------------------------------------------------------------------------------
+
