@@ -38,6 +38,7 @@ entity crash_detect is
 	      RED           : in std_logic_vector(9 downto 0);
 	      GREEN         : in std_logic_vector(9 downto 0);
 	      BLUE          : in std_logic_vector(9 downto 0);
+	      wall_front    : in std_logic;
 
 	      Xpos          : out std_logic_vector(9 downto 0);
 	      Ypos          : out std_logic_vector(9 downto 0);
@@ -115,7 +116,7 @@ begin
 		end case;
 	end process;
 
-	crashilize : process(state,crashing,next_X_pos,next_Y_pos,DIR,DrawX,DrawY,curr_X,curr_Y,play_Size,RED,GREEN,BLUE,black)
+	crashilize : process(state,crashing,next_X_pos,next_Y_pos,DIR,DrawX,DrawY,curr_X,curr_Y,play_Size,RED,GREEN,BLUE,black,wall_front)
 
 	begin
 	crashing <= '0';
@@ -124,8 +125,6 @@ begin
 	in_check <= '0';
 	in_crash <= '0';
 
-
-
 		case state is
 			when START =>
 				curr_X <= next_X_pos;
@@ -133,6 +132,10 @@ begin
 				in_start <= '1';
 			when CHECK =>
 				in_check <= '1';
+				if(wall_front = '1') then
+					crashing <= '1';
+				end if;
+
 --				if((next_X_pos >= X_MAX) OR (next_X_pos <= X_MIN) OR (next_Y_pos >= Y_MAX) OR (next_Y_pos <= Y_MIN)) then
 --					crashing <= '1';
 --				else

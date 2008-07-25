@@ -1,4 +1,4 @@
-# Copyright (C) 1991-2007 Altera Corporation
+# Copyright (C) 1991-2008 Altera Corporation
 # Your use of Altera Corporation's design tools, logic functions 
 # and other software and tools, and its AMPP partner logic 
 # functions, and any output files from any of the foregoing 
@@ -14,10 +14,11 @@
 
 
 
-QUARTUS_VERSION = "7.2"
-DATE = "18:23:36  July 18, 2008"
+QUARTUS_VERSION = "8.0"
+DATE = "01:36:24  July 25, 2008"
 
 
 # Revisions
 
 PROJECT_REVISION = "LightCycles"
+PROJECT_REVISION = "itsover9000"

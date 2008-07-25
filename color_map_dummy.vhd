@@ -308,107 +308,83 @@ begin
 
 	end process;
 
-	play1_wall_check : process(play1_DIR,play1_next_X_pos,play1_next_Y_pos,cell_color,play1_current_speed,play1_X,play1_Y,play1_wall_f)
-	begin
+--	play1_wall_check : process(play1_DIR,play1_next_X_pos,play1_next_Y_pos,cell_color,play1_current_speed,play1_X,play1_Y,play1_wall_f)
+--	begin
 
-		play1_wall_f     <= CONV_STD_LOGIC_VECTOR(0,10);
-		play1_wall_front <= '0';
+--		play1_wall_f     <= CONV_STD_LOGIC_VECTOR(0,10);
+--		play1_wall_front <= '0';
 		
-		if((play1_next_X_pos >= ARENA_X_MAX) OR (play1_next_X_pos <= ARENA_X_MIN) OR (play1_next_Y_pos >= ARENA_Y_MAX) OR (play1_next_Y_pos <= ARENA_Y_MIN)) then
-			play1_wall_front <= '1';
-		else
-			case play1_DIR is
-				when UP =>
-					for i in play1_Size_int to MAX_SPEED loop
-						if(i <= play1_current_speed) then
-							if(cell_color(play1_X,play1_Y-i) = '1') then
-								play1_wall_f(i-play1_Size_int) <= '1';
-							end if;
-						end if;
-					end loop;
-				when DOWN =>
-					for i in play1_Size_int to MAX_SPEED loop
-						if(i <= play1_current_speed) then
-							if(cell_color(play1_X,play1_Y+i) = '1') then
-								play1_wall_f(i-play1_Size_int) <= '1';
-							end if;
-						end if;
-					end loop;
-				when LEFT =>
-					for i in play1_Size_int to MAX_SPEED loop
-						if(i <= play1_current_speed) then
-							if(cell_color(play1_X-i,play1_Y) = '1') then
-								play1_wall_f(i-play1_Size_int) <= '1';
-							end if;
-						end if;
-					end loop;
-				when RIGHT =>
-					for i in play1_Size_int to MAX_SPEED loop
-						if(i <= play1_current_speed) then
-							if(cell_color(play1_X+i,play1_Y) = '1') then
-								play1_wall_f(i-play1_Size_int) <= '1';
-							end if;
-						end if;
-					end loop;
-			end case;
-		end if;
+--		if((play1_next_X_pos >= ARENA_X_MAX) OR (play1_next_X_pos <= ARENA_X_MIN) OR (play1_next_Y_pos >= ARENA_Y_MAX) OR (play1_next_Y_pos <= ARENA_Y_MIN)) then
+--			play1_wall_front <= '1';
+--		else
+--			for i in play1_Size_int to MAX_SPEED loop
+--				if(i <= play1_current_speed) then
+--					case play1_DIR is
+--						when UP =>
+--							if(cell_color(play1_X,play1_Y-i) = '1') then
+--								play1_wall_f(i-play1_Size_int) <= '1';
+--							end if;
+--						when DOWN =>
+--							if(cell_color(play1_X,play1_Y+i) = '1') then
+--								play1_wall_f(i-play1_Size_int) <= '1';
+--							end if;
+--						when LEFT =>
+--							if(cell_color(play1_X-i,play1_Y) = '1') then
+--								play1_wall_f(i-play1_Size_int) <= '1';
+--							end if;
+--						when RIGHT =>
+--							if(cell_color(play1_X+i,play1_Y) = '1') then
+--								play1_wall_f(i-play1_Size_int) <= '1';
+--							end if;
+--						end case;
+--				end if;
+--			end loop;
+--		end if;
 
-		if(play1_wall_f /= CONV_STD_LOGIC_VECTOR(0,MAX_SPEED-play1_Size_int)) then
-			play1_wall_front <= '1';
-		end if;
+--		if(play1_wall_f /= CONV_STD_LOGIC_VECTOR(0,MAX_SPEED-play1_Size_int)) then
+--			play1_wall_front <= '1';
+--		end if;
 
-	end process;
+--	end process;
 
-	play2_wall_check : process(play2_DIR,play2_next_X_pos,play2_next_Y_pos,cell_color,play2_current_speed,play2_X,play2_Y,play2_wall_f)
-	begin
+--	play2_wall_check : process(play2_DIR,play2_next_X_pos,play2_next_Y_pos,cell_color,play2_current_speed,play2_X,play2_Y,play2_wall_f)
+--	begin
 
-		play2_wall_f     <= CONV_STD_LOGIC_VECTOR(0,10);
-		play2_wall_front <= '0';
+--		play2_wall_f     <= CONV_STD_LOGIC_VECTOR(0,10);
+--		play2_wall_front <= '0';
 		
-		if((play2_next_X_pos >= ARENA_X_MAX) OR (play2_next_X_pos <= ARENA_X_MIN) OR (play2_next_Y_pos >= ARENA_Y_MAX) OR (play2_next_Y_pos <= ARENA_Y_MIN)) then
-			play2_wall_front <= '1';
-		else
-			case play2_DIR is
-				when UP =>
-					for i in play2_Size_int to MAX_SPEED loop
-						if(i <= play2_current_speed) then
-							if(cell_color(play2_X,play2_Y-i) = '1') then
-								play2_wall_f(i-play2_Size_int) <= '1';
-							end if;
-						end if;
-					end loop;
-				when DOWN =>
-					for i in play2_Size_int to MAX_SPEED loop
-						if(i <= play2_current_speed) then
-							if(cell_color(play2_X,play2_Y+i) = '1') then
-								play2_wall_f(i-play2_Size_int) <= '1';
-							end if;
-						end if;
-					end loop;
-				when LEFT =>
-					for i in play2_Size_int to MAX_SPEED loop
-						if(i <= play2_current_speed) then
-							if(cell_color(play2_X-i,play2_Y) = '1') then
-								play2_wall_f(i-play2_Size_int) <= '1';
-							end if;
-						end if;
-					end loop;
-				when RIGHT =>
-					for i in play2_Size_int to MAX_SPEED loop
-						if(i <= play2_current_speed) then
-							if(cell_color(play2_X+i,play2_Y) = '1') then
-								play2_wall_f(i-play2_Size_int) <= '1';
-							end if;
-						end if;
-					end loop;
-			end case;
-		end if;
+--		if((play2_next_X_pos >= ARENA_X_MAX) OR (play2_next_X_pos <= ARENA_X_MIN) OR (play2_next_Y_pos >= ARENA_Y_MAX) OR (play2_next_Y_pos <= ARENA_Y_MIN)) then
+--			play2_wall_front <= '1';
+--		else
+--			for i in play2_Size_int to MAX_SPEED loop
+--				if(i <= play2_current_speed) then
+--					case play2_DIR is
+--						when UP =>
+--							if(cell_color(play2_X,play2_Y-i) = '1') then
+--								play2_wall_f(i-play2_Size_int) <= '1';
+--							end if;
+--						when DOWN =>
+--							if(cell_color(play2_X,play2_Y+i) = '1') then
+--								play2_wall_f(i-play2_Size_int) <= '1';
+--							end if;
+--						when LEFT =>
+--							if(cell_color(play2_X-i,play2_Y) = '1') then
+--								play2_wall_f(i-play2_Size_int) <= '1';
+--							end if;
+--						when RIGHT =>
+--							if(cell_color(play2_X+i,play2_Y) = '1') then
+--								play2_wall_f(i-play2_Size_int) <= '1';
+--							end if;
+--					end case;
+--				end if;
+--			end loop;
+--		end if;
 
-		if(play2_wall_f /= CONV_STD_LOGIC_VECTOR(0,MAX_SPEED-play2_Size_int)) then
-			play2_wall_front <= '1';
-		end if;
+--		if(play2_wall_f /= CONV_STD_LOGIC_VECTOR(0,MAX_SPEED-play2_Size_int)) then
+--			play2_wall_front <= '1';
+--		end if;
 
-	end process;
+--	end process;
 
 	    --above
 	      play1_above_red   <= "0000000000";
