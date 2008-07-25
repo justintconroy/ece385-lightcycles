@@ -94,6 +94,7 @@ Architecture Behavioral of LightCycles is
 		      RED           : in std_logic_vector(9 downto 0);
 		      GREEN         : in std_logic_vector(9 downto 0);
 		      BLUE          : in std_logic_vector(9 downto 0);
+		      wall_front    : in std_logic;
 
 		      Xpos          : out std_logic_vector(9 downto 0);
 		      Ypos          : out std_logic_vector(9 downto 0);
@@ -206,8 +207,11 @@ end component;
 
 		      play2_left_red     : out std_logic_vector(9 downto 0);
 		      play2_left_green   : out std_logic_vector(9 downto 0);
-		      play2_left_blue    : out std_logic_vector(9 downto 0)
-                    );
+		      play2_left_blue    : out std_logic_vector(9 downto 0);
+
+		      play1_wall_front   : out std_logic;
+		      play2_wall_front   : out std_logic
+            );
 	end component;
 
 	component AI is
@@ -266,6 +270,9 @@ end component;
 	signal starter            : std_logic;
 	signal vsSig              : std_logic;
 	signal pixel_clk          : std_logic;
+
+	signal play1_wall_front   : std_logic;
+	signal play2_wall_front   : std_logic;
 
 	signal p1_start           : std_logic;
 	signal p1_check           : std_logic;
@@ -401,6 +408,7 @@ begin
 				  RED           => Draw_red,
 				  GREEN         => Draw_green,
 				  BLUE          => Draw_blue,
+				  wall_front    => play1_wall_front,
 
 		          Xpos          => play1_new_X,
 		          Ypos          => play1_new_Y,
@@ -425,6 +433,7 @@ begin
 				  RED           => Draw_red,
 				  GREEN         => Draw_green,
 				  BLUE          => Draw_blue,
+				  wall_front    => play2_wall_front,
 
 		          Xpos          => play2_new_X,
 		          Ypos          => play2_new_Y,
@@ -554,7 +563,9 @@ begin
 
 		          play2_left_red     => play2_left_red,
 		          play2_left_green   => play2_left_green,
-		          play2_left_blue    => play2_left_blue
+		          play2_left_blue    => play2_left_blue,
+				  play1_wall_front   => play1_wall_front,
+				  play2_wall_front   => play2_wall_front
 		        );
 
 		AE : AI

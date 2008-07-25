@@ -1,53 +1,53 @@
 
 State Machine - |LightCycles|keyboard:keyboard_entity|state
-Name state.k state.j state.i state.h state.g state.f state.e state.d state.c state.b state.a 
-state.a 0 0 0 0 0 0 0 0 0 0 0 
-state.b 0 0 0 0 0 0 0 0 0 1 1 
-state.c 0 0 0 0 0 0 0 0 1 0 1 
-state.d 0 0 0 0 0 0 0 1 0 0 1 
-state.e 0 0 0 0 0 0 1 0 0 0 1 
-state.f 0 0 0 0 0 1 0 0 0 0 1 
-state.g 0 0 0 0 1 0 0 0 0 0 1 
-state.h 0 0 0 1 0 0 0 0 0 0 1 
-state.i 0 0 1 0 0 0 0 0 0 0 1 
-state.j 0 1 0 0 0 0 0 0 0 0 1 
-state.k 1 0 0 0 0 0 0 0 0 0 1 
+Name state.state_bit_3 state.state_bit_2 state.state_bit_1 state.state_bit_0 
+state.a 0 0 0 0 
+state.b 0 0 0 1 
+state.c 0 0 1 0 
+state.d 0 0 1 1 
+state.e 0 1 0 0 
+state.f 0 1 0 1 
+state.g 0 1 1 0 
+state.h 0 1 1 1 
+state.i 1 0 0 0 
+state.j 1 0 0 1 
+state.k 1 0 1 0 
 
 State Machine - |LightCycles|crash_detect:player2_crash_detect|state
-Name state.crash state.check state.start 
-state.start 0 0 0 
-state.check 0 1 1 
-state.crash 1 0 1 
+Name state.state_bit_1 state.state_bit_0 
+state.start 0 0 
+state.check 0 1 
+state.crash 1 1 
 
 State Machine - |LightCycles|crash_detect:player1_crash_detect|state
-Name state.crash state.check state.start 
-state.start 0 0 0 
-state.check 0 1 1 
-state.crash 1 0 1 
+Name state.state_bit_1 state.state_bit_0 
+state.start 0 0 
+state.check 0 1 
+state.crash 1 1 
 
 State Machine - |LightCycles|player_velocity_control:player2_velocity|speed:speedal|State
-Name State.decelerate State.accelerate State.const State.stop 
-State.stop 0 0 0 0 
-State.const 0 0 1 1 
-State.accelerate 0 1 0 1 
-State.decelerate 1 0 0 1 
+Name State.state_bit_1 State.state_bit_0 
+State.stop 0 0 
+State.const 0 1 
+State.accelerate 1 1 
+State.decelerate 1 0 
 
 State Machine - |LightCycles|player_velocity_control:player1_velocity|speed:speedal|State
-Name State.decelerate State.accelerate State.const State.stop 
-State.stop 0 0 0 0 
-State.const 0 0 1 1 
-State.accelerate 0 1 0 1 
-State.decelerate 1 0 0 1 
+Name State.state_bit_1 State.state_bit_0 
+State.stop 0 0 
+State.const 0 1 
+State.accelerate 1 1 
+State.decelerate 1 0 
 
 State Machine - |LightCycles|game_control:gameplay|state
-Name state.bothlose state.play2win state.play1win state.checklives state.play2crash state.bothcrash state.play1crash state.round state.start state.menu 
-state.menu 0 0 0 0 0 0 0 0 0 0 
-state.start 0 0 0 0 0 0 0 0 1 1 
-state.round 0 0 0 0 0 0 0 1 0 1 
-state.play1crash 0 0 0 0 0 0 1 0 0 1 
-state.bothcrash 0 0 0 0 0 1 0 0 0 1 
-state.play2crash 0 0 0 0 1 0 0 0 0 1 
-state.checklives 0 0 0 1 0 0 0 0 0 1 
-state.play1win 0 0 1 0 0 0 0 0 0 1 
-state.play2win 0 1 0 0 0 0 0 0 0 1 
-state.bothlose 1 0 0 0 0 0 0 0 0 1 
+Name state.state_bit_3 state.state_bit_2 state.state_bit_1 state.state_bit_0 
+state.menu 0 0 0 0 
+state.start 0 0 0 1 
+state.round 0 0 1 0 
+state.play1crash 0 0 1 1 
+state.bothcrash 0 1 0 0 
+state.play2crash 0 1 0 1 
+state.checklives 0 1 1 0 
+state.play1win 0 1 1 1 
+state.play2win 1 0 0 0 
+state.bothlose 1 0 0 1 
