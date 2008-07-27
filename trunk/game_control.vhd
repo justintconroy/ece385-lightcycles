@@ -28,7 +28,6 @@ entity game_control is
 	       reset_game  : out std_logic; -- Reset game, to menu control
 	       reset_round : out std_logic; -- Reset round, to vehicle_control
 	       starter     : out std_logic;
-	       begin_round : out std_logic;
 	       menu_signal : out std_logic;
 	       new_round   : out std_logic;
 	       FIGHT       : out std_logic;
@@ -158,7 +157,6 @@ begin
 	begin
 	reset_game  <= '0';
 	reset_round <= '0';
-	begin_round <= '0';
 	starter     <= '0';
 	load1       <= '0';
 	load2       <= '0';
@@ -182,7 +180,6 @@ begin
 				menu_signal <= '1';
 			when START =>
 				reset_round <= '1';
-				begin_round <= '1';
 				new_round   <= '1';
 			when ROUND =>
 				starter     <= '1';

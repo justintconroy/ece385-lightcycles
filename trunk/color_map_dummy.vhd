@@ -95,6 +95,15 @@ end color_map_dummy;
 
 architecture Behavioral of color_map_dummy is
 
+	component reg_int is
+		Port( Clk    : in std_logic;
+		      Reset  : in std_logic;
+		      d_in   : in integer;
+		      Load   : in std_logic;
+		      d_out  : out integer
+		    );
+	end component;
+
 constant X_size : integer := 64; --79;
 constant Y_size : integer := 64; --59;
 
@@ -108,6 +117,7 @@ constant SCREEN_X_MIN : std_logic_vector(9 downto 0) := CONV_STD_LOGIC_VECTOR(  
 constant SCREEN_X_MAX : std_logic_vector(9 downto 0) := CONV_STD_LOGIC_VECTOR(639,10);
 constant SCREEN_Y_MIN : std_logic_vector(9 downto 0) := CONV_STD_LOGIC_VECTOR(  0,10);
 constant SCREEN_Y_MAX : std_logic_vector(9 downto 0) := CONV_STD_LOGIC_VECTOR(479,10);
+
 
 --colors
 --constant BLACK  : std_logic_vector(1 downto 0) :="00";
@@ -133,6 +143,9 @@ constant LEFT   : std_logic_vector(1 downto 0) := "10";
 type arena_type is array (integer range 0 to X_size, integer range 0 to Y_size) of std_logic;
 signal cell_color        : arena_type;
 
+type ctrl_state is (A,B);
+signal state,next_state:ctrl_state;
+
 signal draw_X    : integer range 0 to 639;
 signal draw_Y    : integer range 0 to 479;
 
@@ -147,13 +160,22 @@ signal new_color : std_logic;
 constant play1_Size_int : integer := 1;
 constant play2_Size_int : integer := 1;
 
-signal play1_wall_f : std_logic_vector(9 downto 0);
-signal play2_wall_f : std_logic_vector(9 downto 0);
+--signal play1_wall_f     : std_logic_vector(9 downto 0);
+--signal play2_wall_f     : std_logic_vector(9 downto 0);
 
-signal play1_X      : integer range -1 to X_Size+1;
-signal play1_Y      : integer range -1 to Y_Size+1;
-signal play2_X      : integer range -1 to X_Size+1;
-signal play2_Y      : integer range -1 to Y_Size+1;
+signal play1_X          : integer range -1 to X_Size+1;
+signal play1_Y          : integer range -1 to Y_Size+1;
+signal play2_X          : integer range -1 to X_Size+1;
+signal play2_Y          : integer range -1 to Y_Size+1;
+
+signal play1_check_X    : integer range 0 to X_Size+1;
+signal play1_check_Y    : integer range 0 to Y_Size+1;
+signal play2_check_X    : integer range 0 to X_Size+1;
+signal play2_check_Y    : integer range 0 to Y_Size+1;
+
+signal temp1            : integer range 0 to MAX_SPEED;
+signal temp1_in         : integer range 0 to MAX_SPEED;
+signal load_temp1       : std_logic;
 
 
 begin
@@ -168,6 +190,15 @@ begin
 	play1_Y <= CONV_INTEGER(unsigned(play1_Y_pos));
 	play2_X <= CONV_INTEGER(unsigned(play2_X_pos));
 	play2_Y <= CONV_INTEGER(unsigned(play2_Y_pos));
+
+	temp_reg_1 : reg_int
+	Port Map( Clk    => Clk,
+	          Reset  => Reset,
+	          d_in   => temp1_in,
+	          Load   => load_temp1,
+	          d_out  => temp1
+	        );
+
 
 --	colors : process(draw_X,draw_Y,cell_color)
 --	begin
@@ -307,44 +338,101 @@ begin
 				BLUE  <= "1111111111";
 			end if;
 
+		end process;
+
+
+	control_reg: process (reset, clk, next_state)
+	begin
+		if (reset = '1') then
+			state <= A;
+		elsif (rising_edge(clk)) then
+			state <= next_state;
+		end if;
 	end process;
 
-	play1_wall_check : process(play1_DIR,play1_next_X_pos,play1_next_Y_pos,cell_color,play1_current_speed,play1_X,play1_Y,play1_wall_f)
+	get_next_state : process (clk,state)
+	begin
+		case state is
+			when A =>
+				next_state <= B;
+			when B =>
+				next_state <= A;
+		end case;
+	end process;
+
+	check_play1 : process(play1_check_X,play1_check_Y,cell_color)
+	begin
+		play1_wall_front <= '0';
+		if((play1_check_X > X_size) AND (play1_check_Y > Y_size)) then
+			play1_wall_front <= '1';
+		elsif(cell_color(play1_check_X,play1_check_Y) = '1') then
+			play1_wall_front <= '1';
+		end if;
+	end process;
+
+	play1_wall_check : process(play1_DIR,play1_X,play1_Y,play1_next_X_pos,play1_next_Y_pos,play1_current_speed,state,temp1)
 	begin
 
-		play1_wall_f     <= CONV_STD_LOGIC_VECTOR(0,10);
-		play1_wall_front <= '0';
+--		play1_wall_f     <= CONV_STD_LOGIC_VECTOR(0,10);
+--		play1_wall_front <= '0';
+		play1_check_X    <= Play1_X;
+		play1_check_Y    <= Play1_Y;
+		temp1_in         <= 0;
+		load_temp1       <= '1';
 		
 		if((play1_next_X_pos >= ARENA_X_MAX) OR (play1_next_X_pos <= ARENA_X_MIN) OR (play1_next_Y_pos >= ARENA_Y_MAX) OR (play1_next_Y_pos <= ARENA_Y_MIN)) then
-			play1_wall_front <= '1';
+			play1_check_X <= X_size + 1;
+			play1_check_Y <= Y_size + 1;
 		else
-			for i in play1_Size_int to MAX_SPEED loop
-				if(i <= play1_current_speed) then
+			case state is
+				when A =>
 					case play1_DIR is
 						when UP =>
-							if(cell_color(play1_X,play1_Y-i) = '1') then
-								play1_wall_f(i-play1_Size_int) <= '1';
-							end if;
+							play1_check_Y <= play1_Y - temp1;
 						when DOWN =>
-							if(cell_color(play1_X,play1_Y+i) = '1') then
-								play1_wall_f(i-play1_Size_int) <= '1';
-							end if;
+							play1_check_Y <= play1_Y + temp1;
 						when LEFT =>
-							if(cell_color(play1_X-i,play1_Y) = '1') then
-								play1_wall_f(i-play1_Size_int) <= '1';
-							end if;
+							play1_check_X <= play1_X - temp1;
 						when RIGHT =>
-							if(cell_color(play1_X+i,play1_Y) = '1') then
-								play1_wall_f(i-play1_Size_int) <= '1';
-							end if;
-						end case;
-				end if;
-			end loop;
+							play1_check_X <= play1_X + temp1;
+					end case;
+				when B =>
+					load_temp1  <= '1';
+					if (temp1 >= play1_current_speed) then
+						temp1_in    <= play1_Size_int;
+					else
+						temp1_in    <= temp1 + 1;
+					end if;
+			end case;
 		end if;
 
-		if(play1_wall_f /= CONV_STD_LOGIC_VECTOR(0,MAX_SPEED-play1_Size_int)) then
-			play1_wall_front <= '1';
-		end if;
+--			for i in play1_Size_int to MAX_SPEED loop
+--				if(i <= play1_current_speed) then
+--					case play1_DIR is
+--						when UP =>
+--							if(cell_color(play1_X,play1_Y-i) = '1') then
+--								play1_wall_f(i-play1_Size_int) <= '1';
+--							end if;
+--						when DOWN =>
+--							if(cell_color(play1_X,play1_Y+i) = '1') then
+--								play1_wall_f(i-play1_Size_int) <= '1';
+--							end if;
+--						when LEFT =>
+--							if(cell_color(play1_X-i,play1_Y) = '1') then
+--								play1_wall_f(i-play1_Size_int) <= '1';
+--							end if;
+--						when RIGHT =>
+--							if(cell_color(play1_X+i,play1_Y) = '1') then
+--								play1_wall_f(i-play1_Size_int) <= '1';
+--							end if;
+--						end case;
+--				end if;
+--			end loop;
+--		end if;
+
+--		if(play1_wall_f /= CONV_STD_LOGIC_VECTOR(0,MAX_SPEED-play1_Size_int)) then
+--			play1_wall_front <= '1';
+--		end if;
 
 	end process;
 
