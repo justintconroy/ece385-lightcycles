@@ -1,16 +1,16 @@
-Fitter Status : Failed - Thu Jul 24 23:47:46 2008
+Fitter Status : Successful - Fri Jul 25 15:15:07 2008
 Quartus II Version : 8.0 Build 215 05/29/2008 SJ Web Edition
 Revision Name : LightCycles
 Top-level Entity Name : LightCycles
 Family : Cyclone II
 Device : EP2C35F672C6
 Timing Models : Final
-Total logic elements : 52,616
-    Total combinational functions : 52,616
-    Dedicated logic registers : 4,425
-Total registers : 4425
+Total logic elements : 29,652 / 33,216 ( 89 % )
+    Total combinational functions : 29,634 / 33,216 ( 89 % )
+    Dedicated logic registers : 4,400 / 33,216 ( 13 % )
+Total registers : 4400
 Total pins : 68 / 475 ( 14 % )
 Total virtual pins : 0
-Total memory bits : 0 / 483,840 ( 0 % )
+Total memory bits : 5 / 483,840 ( < 1 % )
 Embedded Multiplier 9-bit elements : 0 / 70 ( 0 % )
 Total PLLs : 0 / 4 ( 0 % )

@@ -133,7 +133,8 @@ constant LEFT   : std_logic_vector(1 downto 0) := "10";
 type arena_type is array (integer range 0 to X_size, integer range 0 to Y_size) of std_logic;
 signal cell_color        : arena_type;
 
-signal draw_X, draw_Y    : integer;
+signal draw_X    : integer range 0 to 639;
+signal draw_Y    : integer range 0 to 479;
 
 signal GridX, GridY      : std_logic_vector(9 downto 0);
 
@@ -149,10 +150,10 @@ constant play2_Size_int : integer := 1;
 signal play1_wall_f : std_logic_vector(9 downto 0);
 signal play2_wall_f : std_logic_vector(9 downto 0);
 
-signal play1_X      : integer;
-signal play1_Y      : integer;
-signal play2_X      : integer;
-signal play2_Y      : integer;
+signal play1_X      : integer range -1 to X_Size+1;
+signal play1_Y      : integer range -1 to Y_Size+1;
+signal play2_X      : integer range -1 to X_Size+1;
+signal play2_Y      : integer range -1 to Y_Size+1;
 
 
 begin
@@ -308,44 +309,44 @@ begin
 
 	end process;
 
---	play1_wall_check : process(play1_DIR,play1_next_X_pos,play1_next_Y_pos,cell_color,play1_current_speed,play1_X,play1_Y,play1_wall_f)
---	begin
+	play1_wall_check : process(play1_DIR,play1_next_X_pos,play1_next_Y_pos,cell_color,play1_current_speed,play1_X,play1_Y,play1_wall_f)
+	begin
 
---		play1_wall_f     <= CONV_STD_LOGIC_VECTOR(0,10);
---		play1_wall_front <= '0';
+		play1_wall_f     <= CONV_STD_LOGIC_VECTOR(0,10);
+		play1_wall_front <= '0';
 		
---		if((play1_next_X_pos >= ARENA_X_MAX) OR (play1_next_X_pos <= ARENA_X_MIN) OR (play1_next_Y_pos >= ARENA_Y_MAX) OR (play1_next_Y_pos <= ARENA_Y_MIN)) then
---			play1_wall_front <= '1';
---		else
---			for i in play1_Size_int to MAX_SPEED loop
---				if(i <= play1_current_speed) then
---					case play1_DIR is
---						when UP =>
---							if(cell_color(play1_X,play1_Y-i) = '1') then
---								play1_wall_f(i-play1_Size_int) <= '1';
---							end if;
---						when DOWN =>
---							if(cell_color(play1_X,play1_Y+i) = '1') then
---								play1_wall_f(i-play1_Size_int) <= '1';
---							end if;
---						when LEFT =>
---							if(cell_color(play1_X-i,play1_Y) = '1') then
---								play1_wall_f(i-play1_Size_int) <= '1';
---							end if;
---						when RIGHT =>
---							if(cell_color(play1_X+i,play1_Y) = '1') then
---								play1_wall_f(i-play1_Size_int) <= '1';
---							end if;
---						end case;
---				end if;
---			end loop;
---		end if;
+		if((play1_next_X_pos >= ARENA_X_MAX) OR (play1_next_X_pos <= ARENA_X_MIN) OR (play1_next_Y_pos >= ARENA_Y_MAX) OR (play1_next_Y_pos <= ARENA_Y_MIN)) then
+			play1_wall_front <= '1';
+		else
+			for i in play1_Size_int to MAX_SPEED loop
+				if(i <= play1_current_speed) then
+					case play1_DIR is
+						when UP =>
+							if(cell_color(play1_X,play1_Y-i) = '1') then
+								play1_wall_f(i-play1_Size_int) <= '1';
+							end if;
+						when DOWN =>
+							if(cell_color(play1_X,play1_Y+i) = '1') then
+								play1_wall_f(i-play1_Size_int) <= '1';
+							end if;
+						when LEFT =>
+							if(cell_color(play1_X-i,play1_Y) = '1') then
+								play1_wall_f(i-play1_Size_int) <= '1';
+							end if;
+						when RIGHT =>
+							if(cell_color(play1_X+i,play1_Y) = '1') then
+								play1_wall_f(i-play1_Size_int) <= '1';
+							end if;
+						end case;
+				end if;
+			end loop;
+		end if;
 
---		if(play1_wall_f /= CONV_STD_LOGIC_VECTOR(0,MAX_SPEED-play1_Size_int)) then
---			play1_wall_front <= '1';
---		end if;
+		if(play1_wall_f /= CONV_STD_LOGIC_VECTOR(0,MAX_SPEED-play1_Size_int)) then
+			play1_wall_front <= '1';
+		end if;
 
---	end process;
+	end process;
 
 --	play2_wall_check : process(play2_DIR,play2_next_X_pos,play2_next_Y_pos,cell_color,play2_current_speed,play2_X,play2_Y,play2_wall_f)
 --	begin
