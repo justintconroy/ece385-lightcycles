@@ -49,7 +49,6 @@ Architecture Behavioral of LightCycles is
 		      keypress    : in std_logic;
 
 		      starter     : out std_logic;
-		      begin_round : out std_logic;
 		      reset_game  : out std_logic;
 		      reset_round : out std_logic;
 			  menu_signal : out std_logic;
@@ -266,7 +265,6 @@ end component;
 	signal comp_dir           : std_logic_vector(1 downto 0);
 	signal keycode            : std_logic_vector(7 downto 0);
 	signal break              : std_logic;
-	signal begin_round        : std_logic;
 	signal starter            : std_logic;
 	signal vsSig              : std_logic;
 	signal pixel_clk          : std_logic;
@@ -348,7 +346,6 @@ begin
 		          reset       => reset_h,
 		          crash       => crash_sig,
 		          keypress    => enter,
-		          begin_round => begin_round,
 				  starter     => starter,
 
 		          reset_game  => menu_reset,
