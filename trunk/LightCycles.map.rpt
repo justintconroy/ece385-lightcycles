@@ -1,5 +1,5 @@
 Analysis & Synthesis report for LightCycles
-Fri Jul 25 01:24:38 2008
+Fri Jul 25 03:46:24 2008
 Quartus II Version 8.0 Build 215 05/29/2008 SJ Web Edition
 
 
@@ -19,16 +19,17 @@ Quartus II Version 8.0 Build 215 05/29/2008 SJ Web Edition
  11. State Machine - |LightCycles|player_velocity_control:player2_velocity|speed:speedal|State
  12. State Machine - |LightCycles|player_velocity_control:player1_velocity|speed:speedal|State
  13. State Machine - |LightCycles|game_control:gameplay|state
- 14. Registers Removed During Synthesis
- 15. General Register Statistics
- 16. Inverted Register Statistics
- 17. Multiplexer Restructuring Statistics (Restructuring Performed)
- 18. Source assignments for keyboard:keyboard_entity|reg_11:regA|altshift_taps:reg_value_rtl_0|shift_taps_kvm:auto_generated|altsyncram_upa1:altsyncram2
- 19. Source assignments for keyboard:keyboard_entity|reg_11:regA|altshift_taps:reg_value_rtl_1|shift_taps_jvm:auto_generated|altsyncram_3161:altsyncram4
- 20. Parameter Settings for Inferred Entity Instance: keyboard:keyboard_entity|reg_11:regA|altshift_taps:reg_value_rtl_0
- 21. Parameter Settings for Inferred Entity Instance: keyboard:keyboard_entity|reg_11:regA|altshift_taps:reg_value_rtl_1
- 22. altshift_taps Parameter Settings by Entity Instance
- 23. Analysis & Synthesis Messages
+ 14. Logic Cells Representing Combinational Loops
+ 15. Registers Removed During Synthesis
+ 16. General Register Statistics
+ 17. Inverted Register Statistics
+ 18. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 19. Source assignments for keyboard:keyboard_entity|reg_11:regA|altshift_taps:reg_value_rtl_0|shift_taps_kvm:auto_generated|altsyncram_upa1:altsyncram2
+ 20. Source assignments for keyboard:keyboard_entity|reg_11:regA|altshift_taps:reg_value_rtl_1|shift_taps_jvm:auto_generated|altsyncram_3161:altsyncram4
+ 21. Parameter Settings for Inferred Entity Instance: keyboard:keyboard_entity|reg_11:regA|altshift_taps:reg_value_rtl_0
+ 22. Parameter Settings for Inferred Entity Instance: keyboard:keyboard_entity|reg_11:regA|altshift_taps:reg_value_rtl_1
+ 23. altshift_taps Parameter Settings by Entity Instance
+ 24. Analysis & Synthesis Messages
 
 
 
@@ -54,15 +55,15 @@ applicable agreement for further details.
 +------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                 ;
 +------------------------------------+-----------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Fri Jul 25 01:24:37 2008   ;
+; Analysis & Synthesis Status        ; Successful - Fri Jul 25 03:46:23 2008   ;
 ; Quartus II Version                 ; 8.0 Build 215 05/29/2008 SJ Web Edition ;
 ; Revision Name                      ; LightCycles                             ;
 ; Top-level Entity Name              ; LightCycles                             ;
 ; Family                             ; Cyclone II                              ;
-; Total logic elements               ; 7,727                                   ;
-;     Total combinational functions  ; 7,727                                   ;
-;     Dedicated logic registers      ; 4,399                                   ;
-; Total registers                    ; 4399                                    ;
+; Total logic elements               ; 29,633                                  ;
+;     Total combinational functions  ; 29,633                                  ;
+;     Dedicated logic registers      ; 4,400                                   ;
+; Total registers                    ; 4400                                    ;
 ; Total pins                         ; 68                                      ;
 ; Total virtual pins                 ; 0                                       ;
 ; Total memory bits                  ; 5                                       ;
@@ -189,34 +190,34 @@ applicable agreement for further details.
 +----------------------------------+-----------------+------------------------------+----------------------------------------------------------------------+
 
 
-+---------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary                                     ;
-+---------------------------------------------+-----------------------------------+
-; Resource                                    ; Usage                             ;
-+---------------------------------------------+-----------------------------------+
-; Estimated Total logic elements              ; 7,727                             ;
-;                                             ;                                   ;
-; Total combinational functions               ; 7727                              ;
-; Logic element usage by number of LUT inputs ;                                   ;
-;     -- 4 input functions                    ; 7269                              ;
-;     -- 3 input functions                    ; 248                               ;
-;     -- <=2 input functions                  ; 210                               ;
-;                                             ;                                   ;
-; Logic elements by mode                      ;                                   ;
-;     -- normal mode                          ; 7477                              ;
-;     -- arithmetic mode                      ; 250                               ;
-;                                             ;                                   ;
-; Total registers                             ; 4399                              ;
-;     -- Dedicated logic registers            ; 4399                              ;
-;     -- I/O registers                        ; 0                                 ;
-;                                             ;                                   ;
-; I/O pins                                    ; 68                                ;
-; Total memory bits                           ; 5                                 ;
-; Maximum fan-out node                        ; game_control:gameplay|reset_round ;
-; Maximum fan-out                             ; 4327                              ;
-; Total fan-out                               ; 43549                             ;
-; Average fan-out                             ; 3.57                              ;
-+---------------------------------------------+-----------------------------------+
++---------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                                                 ;
++---------------------------------------------+-----------------------------------------------+
+; Resource                                    ; Usage                                         ;
++---------------------------------------------+-----------------------------------------------+
+; Estimated Total logic elements              ; 29,633                                        ;
+;                                             ;                                               ;
+; Total combinational functions               ; 29633                                         ;
+; Logic element usage by number of LUT inputs ;                                               ;
+;     -- 4 input functions                    ; 22833                                         ;
+;     -- 3 input functions                    ; 6581                                          ;
+;     -- <=2 input functions                  ; 219                                           ;
+;                                             ;                                               ;
+; Logic elements by mode                      ;                                               ;
+;     -- normal mode                          ; 29383                                         ;
+;     -- arithmetic mode                      ; 250                                           ;
+;                                             ;                                               ;
+; Total registers                             ; 4400                                          ;
+;     -- Dedicated logic registers            ; 4400                                          ;
+;     -- I/O registers                        ; 0                                             ;
+;                                             ;                                               ;
+; I/O pins                                    ; 68                                            ;
+; Total memory bits                           ; 5                                             ;
+; Maximum fan-out node                        ; crash_detect:player1_crash_detect|Xpos[0]~191 ;
+; Maximum fan-out                             ; 7418                                          ;
+; Total fan-out                               ; 124826                                        ;
+; Average fan-out                             ; 3.66                                          ;
++---------------------------------------------+-----------------------------------------------+
 
 
 +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -224,11 +225,11 @@ applicable agreement for further details.
 +-----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------------------+--------------+
 ; Compilation Hierarchy Node                    ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                       ; Library Name ;
 +-----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------------------+--------------+
-; |LightCycles                                  ; 7727 (0)          ; 4399 (0)     ; 5           ; 0            ; 0       ; 0         ; 68   ; 0            ; |LightCycles                                                                                                                              ; work         ;
+; |LightCycles                                  ; 29633 (0)         ; 4400 (0)     ; 5           ; 0            ; 0       ; 0         ; 68   ; 0            ; |LightCycles                                                                                                                              ; work         ;
 ;    |HexDriver:Hex4_ent|                       ; 3 (3)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LightCycles|HexDriver:Hex4_ent                                                                                                           ; work         ;
-;    |HexDriver:Hex5_ent|                       ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LightCycles|HexDriver:Hex5_ent                                                                                                           ; work         ;
-;    |color_map_dummy:color_mapper|             ; 7423 (7423)       ; 4225 (4225)  ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LightCycles|color_map_dummy:color_mapper                                                                                                 ; work         ;
-;    |crash_detect:player1_crash_detect|        ; 1 (1)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LightCycles|crash_detect:player1_crash_detect                                                                                            ; work         ;
+;    |HexDriver:Hex5_ent|                       ; 3 (3)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LightCycles|HexDriver:Hex5_ent                                                                                                           ; work         ;
+;    |color_map_dummy:color_mapper|             ; 29294 (29294)     ; 4225 (4225)  ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LightCycles|color_map_dummy:color_mapper                                                                                                 ; work         ;
+;    |crash_detect:player1_crash_detect|        ; 25 (25)           ; 2 (2)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LightCycles|crash_detect:player1_crash_detect                                                                                            ; work         ;
 ;    |game_control:gameplay|                    ; 30 (28)           ; 8 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LightCycles|game_control:gameplay                                                                                                        ; work         ;
 ;       |reg_2:reg_2A|                          ; 1 (1)             ; 2 (2)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LightCycles|game_control:gameplay|reg_2:reg_2A                                                                                           ; work         ;
 ;       |reg_2:reg_2B|                          ; 1 (1)             ; 2 (2)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LightCycles|game_control:gameplay|reg_2:reg_2B                                                                                           ; work         ;
@@ -253,15 +254,13 @@ applicable agreement for further details.
 ;                |cntr_kkf:cntr1|               ; 5 (5)             ; 2 (2)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LightCycles|keyboard:keyboard_entity|reg_11:regA|altshift_taps:reg_value_rtl_1|shift_taps_jvm:auto_generated|cntr_kkf:cntr1              ; work         ;
 ;       |reg_11:regB|                           ; 0 (0)             ; 7 (7)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LightCycles|keyboard:keyboard_entity|reg_11:regB                                                                                         ; work         ;
 ;       |reg_8:regC|                            ; 0 (0)             ; 8 (8)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LightCycles|keyboard:keyboard_entity|reg_8:regC                                                                                          ; work         ;
-;    |player_velocity_control:player1_velocity| ; 112 (60)          ; 48 (42)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LightCycles|player_velocity_control:player1_velocity                                                                                     ; work         ;
+;    |player_velocity_control:player1_velocity| ; 110 (61)          ; 58 (42)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LightCycles|player_velocity_control:player1_velocity                                                                                     ; work         ;
 ;       |direction:directional|                 ; 10 (10)           ; 4 (4)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LightCycles|player_velocity_control:player1_velocity|direction:directional                                                               ; work         ;
-;       |speed:speedal|                         ; 42 (40)           ; 2 (2)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LightCycles|player_velocity_control:player1_velocity|speed:speedal                                                                       ; work         ;
-;          |reg_10:reg_10A|                     ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LightCycles|player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A                                                        ; work         ;
-;    |player_velocity_control:player2_velocity| ; 70 (70)           ; 52 (41)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LightCycles|player_velocity_control:player2_velocity                                                                                     ; work         ;
+;       |speed:speedal|                         ; 39 (37)           ; 12 (2)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LightCycles|player_velocity_control:player1_velocity|speed:speedal                                                                       ; work         ;
+;          |reg_10:reg_10A|                     ; 2 (2)             ; 10 (10)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LightCycles|player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A                                                        ; work         ;
+;    |player_velocity_control:player2_velocity| ; 71 (71)           ; 42 (41)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LightCycles|player_velocity_control:player2_velocity                                                                                     ; work         ;
 ;       |direction:directional|                 ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LightCycles|player_velocity_control:player2_velocity|direction:directional                                                               ; work         ;
-;       |speed:speedal|                         ; 0 (0)             ; 10 (0)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LightCycles|player_velocity_control:player2_velocity|speed:speedal                                                                       ; work         ;
-;          |reg_10:reg_10A|                     ; 0 (0)             ; 10 (10)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LightCycles|player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A                                                        ; work         ;
-;    |vga_controller:VGA_entity|                ; 43 (43)           ; 23 (23)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LightCycles|vga_controller:VGA_entity                                                                                                    ; work         ;
+;    |vga_controller:VGA_entity|                ; 54 (54)           ; 23 (23)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |LightCycles|vga_controller:VGA_entity                                                                                                    ; work         ;
 +-----------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -316,7 +315,7 @@ Encoding Type:  Minimal Bits
 +-------------+-------------------+------------------------------------+
 ; state.start ; 0                 ; 0                                  ;
 ; state.check ; 0                 ; 1                                  ;
-; state.crash ; 1                 ; 1                                  ;
+; state.crash ; 1                 ; 0                                  ;
 +-------------+-------------------+------------------------------------+
 
 
@@ -365,6 +364,17 @@ Encoding Type:  Minimal Bits
 +------------------+-------------------+-------------------+-------------------+-------------------+
 
 
++------------------------------------------------------------+
+; Logic Cells Representing Combinational Loops               ;
++--------------------------------------------------------+---+
+; Logic Cell Name                                        ;   ;
++--------------------------------------------------------+---+
+; crash_detect:player1_crash_detect|crashing~0           ;   ;
+; Number of logic cells representing combinational loops ; 1 ;
++--------------------------------------------------------+---+
+Note: All cells listed above may not be present at the end of synthesis due to various synthesis optimizations.
+
+
 +-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 ; Registers Removed During Synthesis                                                                                                                                                  ;
 +------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------+
@@ -378,20 +388,19 @@ Encoding Type:  Minimal Bits
 ; crash_detect:player2_crash_detect|state.state_bit_0                                ; Lost fanout                                                                                    ;
 ; player_velocity_control:player2_velocity|speed:speedal|State.state_bit_0           ; Lost fanout                                                                                    ;
 ; player_velocity_control:player2_velocity|speed:speedal|State.state_bit_1           ; Lost fanout                                                                                    ;
-; crash_detect:player1_crash_detect|state.state_bit_1                                ; Stuck at GND due to stuck port data_in                                                         ;
 ; crash_detect:player2_crash_detect|state.state_bit_1                                ; Stuck at GND due to stuck port data_in                                                         ;
-; player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[0] ; Merged with player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[0] ;
-; player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[1] ; Merged with player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[1] ;
-; player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[2] ; Merged with player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[2] ;
-; player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[3] ; Merged with player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[3] ;
-; player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[4] ; Merged with player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[4] ;
-; player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[5] ; Merged with player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[5] ;
-; player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[6] ; Merged with player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[6] ;
-; player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[7] ; Merged with player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[7] ;
-; player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[8] ; Merged with player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[8] ;
-; player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[9] ; Merged with player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[9] ;
+; player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[9] ; Merged with player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[9] ;
+; player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[8] ; Merged with player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[8] ;
+; player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[7] ; Merged with player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[7] ;
+; player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[6] ; Merged with player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[6] ;
+; player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[5] ; Merged with player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[5] ;
+; player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[4] ; Merged with player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[4] ;
+; player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[3] ; Merged with player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[3] ;
+; player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[2] ; Merged with player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[2] ;
+; player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[1] ; Merged with player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[1] ;
+; player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[0] ; Merged with player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[0] ;
 ; player_velocity_control:player2_velocity|direction:directional|State.left          ; Merged with player_velocity_control:player2_velocity|direction:directional|State.up            ;
-; Total Number of Removed Registers = 22                                             ;                                                                                                ;
+; Total Number of Removed Registers = 21                                             ;                                                                                                ;
 +------------------------------------------------------------------------------------+------------------------------------------------------------------------------------------------+
 
 
@@ -400,12 +409,12 @@ Encoding Type:  Minimal Bits
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 4399  ;
+; Total registers                              ; 4400  ;
 ; Number of registers using Synchronous Clear  ; 40    ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 4350  ;
+; Number of registers using Asynchronous Clear ; 4351  ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 90    ;
+; Number of registers using Clock Enable       ; 88    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -415,7 +424,7 @@ Encoding Type:  Minimal Bits
 +--------------------------------------------------------------------------------------------------------+---------+
 ; Inverted Register                                                                                      ; Fan out ;
 +--------------------------------------------------------------------------------------------------------+---------+
-; player_velocity_control:player1_velocity|direction:directional|State.right                             ; 16      ;
+; player_velocity_control:player1_velocity|direction:directional|State.right                             ; 18      ;
 ; player_velocity_control:player2_velocity|new_Y_pos[8]                                                  ; 3       ;
 ; player_velocity_control:player2_velocity|new_Y_pos[5]                                                  ; 3       ;
 ; player_velocity_control:player2_velocity|new_Y_pos[1]                                                  ; 3       ;
@@ -425,13 +434,13 @@ Encoding Type:  Minimal Bits
 ; player_velocity_control:player2_velocity|new_X_pos[3]                                                  ; 3       ;
 ; player_velocity_control:player2_velocity|new_X_pos[2]                                                  ; 3       ;
 ; player_velocity_control:player2_velocity|new_X_pos[1]                                                  ; 3       ;
-; player_velocity_control:player1_velocity|new_X_pos[7]                                                  ; 3       ;
-; player_velocity_control:player1_velocity|new_X_pos[6]                                                  ; 3       ;
-; player_velocity_control:player1_velocity|new_X_pos[4]                                                  ; 3       ;
-; player_velocity_control:player1_velocity|new_X_pos[1]                                                  ; 3       ;
-; player_velocity_control:player1_velocity|new_Y_pos[8]                                                  ; 3       ;
-; player_velocity_control:player1_velocity|new_Y_pos[5]                                                  ; 3       ;
-; player_velocity_control:player1_velocity|new_Y_pos[1]                                                  ; 3       ;
+; player_velocity_control:player1_velocity|new_Y_pos[8]                                                  ; 4       ;
+; player_velocity_control:player1_velocity|new_Y_pos[5]                                                  ; 6       ;
+; player_velocity_control:player1_velocity|new_Y_pos[1]                                                  ; 5       ;
+; player_velocity_control:player1_velocity|new_X_pos[7]                                                  ; 4       ;
+; player_velocity_control:player1_velocity|new_X_pos[6]                                                  ; 7       ;
+; player_velocity_control:player1_velocity|new_X_pos[4]                                                  ; 5       ;
+; player_velocity_control:player1_velocity|new_X_pos[1]                                                  ; 16      ;
 ; keyboard:keyboard_entity|reg_11:regA|altshift_taps:reg_value_rtl_0|shift_taps_kvm:auto_generated|dffe4 ; 1       ;
 ; keyboard:keyboard_entity|reg_11:regA|altshift_taps:reg_value_rtl_1|shift_taps_jvm:auto_generated|dffe6 ; 1       ;
 ; Total number of inverted registers = 19                                                                ;         ;
@@ -443,13 +452,22 @@ Encoding Type:  Minimal Bits
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                      ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------------------------------+
-; 3:1                ; 20 bits   ; 40 LEs        ; 40 LEs               ; 0 LEs                  ; Yes        ; |LightCycles|player_velocity_control:player1_velocity|Y_Motion[8]                               ;
-; 3:1                ; 20 bits   ; 40 LEs        ; 40 LEs               ; 0 LEs                  ; Yes        ; |LightCycles|player_velocity_control:player2_velocity|X_Motion[0]                               ;
-; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |LightCycles|game_control:gameplay|reg_2:reg_2A|reg_value[1]                                    ;
+; 3:1                ; 20 bits   ; 40 LEs        ; 40 LEs               ; 0 LEs                  ; Yes        ; |LightCycles|player_velocity_control:player1_velocity|X_Motion[8]                               ;
+; 3:1                ; 20 bits   ; 40 LEs        ; 40 LEs               ; 0 LEs                  ; Yes        ; |LightCycles|player_velocity_control:player2_velocity|Y_Motion[9]                               ;
+; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |LightCycles|game_control:gameplay|reg_2:reg_2A|reg_value[0]                                    ;
 ; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |LightCycles|game_control:gameplay|reg_2:reg_2B|reg_value[0]                                    ;
-; 6:1                ; 10 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |LightCycles|player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[3] ;
-; 6:1                ; 10 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |LightCycles|player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[9] ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |LightCycles|key_processor:play1_key_process|loadenter                                          ;
+; 6:1                ; 10 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |LightCycles|player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[3] ;
+; 6:1                ; 10 bits   ; 40 LEs        ; 20 LEs               ; 20 LEs                 ; Yes        ; |LightCycles|player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[7] ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |LightCycles|key_processor:play1_key_process|loadx                                              ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |LightCycles|color_map_dummy:color_mapper|Mux67                                                 ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |LightCycles|color_map_dummy:color_mapper|Mux66                                                 ;
+; 3:1                ; 65 bits   ; 130 LEs       ; 130 LEs              ; 0 LEs                  ; No         ; |LightCycles|color_map_dummy:color_mapper|Mux318                                                ;
+; 3:1                ; 65 bits   ; 130 LEs       ; 130 LEs              ; 0 LEs                  ; No         ; |LightCycles|color_map_dummy:color_mapper|Mux223                                                ;
+; 3:1                ; 195 bits  ; 390 LEs       ; 390 LEs              ; 0 LEs                  ; No         ; |LightCycles|color_map_dummy:color_mapper|Mux187                                                ;
+; 3:1                ; 260 bits  ; 520 LEs       ; 520 LEs              ; 0 LEs                  ; No         ; |LightCycles|color_map_dummy:color_mapper|Mux107                                                ;
+; 4:1                ; 11 bits   ; 22 LEs        ; 22 LEs               ; 0 LEs                  ; No         ; |LightCycles|color_map_dummy:color_mapper|Mux1347                                               ;
+; 4:1                ; 715 bits  ; 1430 LEs      ; 1430 LEs             ; 0 LEs                  ; No         ; |LightCycles|color_map_dummy:color_mapper|Mux224                                                ;
+; 9:1                ; 65 bits   ; 390 LEs       ; 390 LEs              ; 0 LEs                  ; No         ; |LightCycles|color_map_dummy:color_mapper|Mux1341                                               ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+-------------------------------------------------------------------------------------------------+
 
 
@@ -524,7 +542,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II Analysis & Synthesis
     Info: Version 8.0 Build 215 05/29/2008 SJ Web Edition
-    Info: Processing started: Fri Jul 25 00:58:12 2008
+    Info: Processing started: Fri Jul 25 02:30:05 2008
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off LightCycles -c LightCycles
 Info: Found 2 design units, including 1 entities, in source file AI.vhd
     Info: Found design unit 1: AI-Behavioral
@@ -634,34 +652,10 @@ Info: Elaborating entity "d_ff" for hierarchy "keyboard:keyboard_entity|edge_det
 Info: Elaborating entity "reg_11" for hierarchy "keyboard:keyboard_entity|reg_11:regA"
 Info: Elaborating entity "reg_8" for hierarchy "keyboard:keyboard_entity|reg_8:regC"
 Info: Elaborating entity "color_map_dummy" for hierarchy "color_map_dummy:color_mapper"
-Info (10035): Verilog HDL or VHDL information at color_map_dummy.vhd(149): object "play1_wall_f" declared but not used
 Info (10035): Verilog HDL or VHDL information at color_map_dummy.vhd(150): object "play2_wall_f" declared but not used
-Warning (10036): Verilog HDL or VHDL warning at color_map_dummy.vhd(152): object "play1_X" assigned a value but never read
-Warning (10036): Verilog HDL or VHDL warning at color_map_dummy.vhd(153): object "play1_Y" assigned a value but never read
 Warning (10036): Verilog HDL or VHDL warning at color_map_dummy.vhd(154): object "play2_X" assigned a value but never read
 Warning (10036): Verilog HDL or VHDL warning at color_map_dummy.vhd(155): object "play2_Y" assigned a value but never read
-Warning (10034): Output port "play1_wall_front" at color_map_dummy.vhd(91) has no driver
 Warning (10034): Output port "play2_wall_front" at color_map_dummy.vhd(92) has no driver
-Warning (10862): input port "play1_next_X_pos[9]" at color_map_dummy.vhd(35) has no fan-out
-Warning (10862): input port "play1_next_X_pos[8]" at color_map_dummy.vhd(35) has no fan-out
-Warning (10862): input port "play1_next_X_pos[7]" at color_map_dummy.vhd(35) has no fan-out
-Warning (10862): input port "play1_next_X_pos[6]" at color_map_dummy.vhd(35) has no fan-out
-Warning (10862): input port "play1_next_X_pos[5]" at color_map_dummy.vhd(35) has no fan-out
-Warning (10862): input port "play1_next_X_pos[4]" at color_map_dummy.vhd(35) has no fan-out
-Warning (10862): input port "play1_next_X_pos[3]" at color_map_dummy.vhd(35) has no fan-out
-Warning (10862): input port "play1_next_X_pos[2]" at color_map_dummy.vhd(35) has no fan-out
-Warning (10862): input port "play1_next_X_pos[1]" at color_map_dummy.vhd(35) has no fan-out
-Warning (10862): input port "play1_next_X_pos[0]" at color_map_dummy.vhd(35) has no fan-out
-Warning (10862): input port "play1_next_Y_pos[9]" at color_map_dummy.vhd(36) has no fan-out
-Warning (10862): input port "play1_next_Y_pos[8]" at color_map_dummy.vhd(36) has no fan-out
-Warning (10862): input port "play1_next_Y_pos[7]" at color_map_dummy.vhd(36) has no fan-out
-Warning (10862): input port "play1_next_Y_pos[6]" at color_map_dummy.vhd(36) has no fan-out
-Warning (10862): input port "play1_next_Y_pos[5]" at color_map_dummy.vhd(36) has no fan-out
-Warning (10862): input port "play1_next_Y_pos[4]" at color_map_dummy.vhd(36) has no fan-out
-Warning (10862): input port "play1_next_Y_pos[3]" at color_map_dummy.vhd(36) has no fan-out
-Warning (10862): input port "play1_next_Y_pos[2]" at color_map_dummy.vhd(36) has no fan-out
-Warning (10862): input port "play1_next_Y_pos[1]" at color_map_dummy.vhd(36) has no fan-out
-Warning (10862): input port "play1_next_Y_pos[0]" at color_map_dummy.vhd(36) has no fan-out
 Warning (10862): input port "play2_next_X_pos[9]" at color_map_dummy.vhd(38) has no fan-out
 Warning (10862): input port "play2_next_X_pos[8]" at color_map_dummy.vhd(38) has no fan-out
 Warning (10862): input port "play2_next_X_pos[7]" at color_map_dummy.vhd(38) has no fan-out
@@ -682,20 +676,8 @@ Warning (10862): input port "play2_next_Y_pos[3]" at color_map_dummy.vhd(39) has
 Warning (10862): input port "play2_next_Y_pos[2]" at color_map_dummy.vhd(39) has no fan-out
 Warning (10862): input port "play2_next_Y_pos[1]" at color_map_dummy.vhd(39) has no fan-out
 Warning (10862): input port "play2_next_Y_pos[0]" at color_map_dummy.vhd(39) has no fan-out
-Warning (10862): input port "play1_DIR[1]" at color_map_dummy.vhd(41) has no fan-out
-Warning (10862): input port "play1_DIR[0]" at color_map_dummy.vhd(41) has no fan-out
 Warning (10862): input port "play2_DIR[1]" at color_map_dummy.vhd(42) has no fan-out
 Warning (10862): input port "play2_DIR[0]" at color_map_dummy.vhd(42) has no fan-out
-Warning (10862): input port "play1_current_speed[9]" at color_map_dummy.vhd(44) has no fan-out
-Warning (10862): input port "play1_current_speed[8]" at color_map_dummy.vhd(44) has no fan-out
-Warning (10862): input port "play1_current_speed[7]" at color_map_dummy.vhd(44) has no fan-out
-Warning (10862): input port "play1_current_speed[6]" at color_map_dummy.vhd(44) has no fan-out
-Warning (10862): input port "play1_current_speed[5]" at color_map_dummy.vhd(44) has no fan-out
-Warning (10862): input port "play1_current_speed[4]" at color_map_dummy.vhd(44) has no fan-out
-Warning (10862): input port "play1_current_speed[3]" at color_map_dummy.vhd(44) has no fan-out
-Warning (10862): input port "play1_current_speed[2]" at color_map_dummy.vhd(44) has no fan-out
-Warning (10862): input port "play1_current_speed[1]" at color_map_dummy.vhd(44) has no fan-out
-Warning (10862): input port "play1_current_speed[0]" at color_map_dummy.vhd(44) has no fan-out
 Warning (10862): input port "play2_current_speed[9]" at color_map_dummy.vhd(45) has no fan-out
 Warning (10862): input port "play2_current_speed[8]" at color_map_dummy.vhd(45) has no fan-out
 Warning (10862): input port "play2_current_speed[7]" at color_map_dummy.vhd(45) has no fan-out
@@ -758,7 +740,7 @@ Info: Encoding result for state machine "|LightCycles|crash_detect:player1_crash
         Info: Encoded state bit "crash_detect:player1_crash_detect|state.state_bit_0"
     Info: State "|LightCycles|crash_detect:player1_crash_detect|state.start" uses code string "00"
     Info: State "|LightCycles|crash_detect:player1_crash_detect|state.check" uses code string "01"
-    Info: State "|LightCycles|crash_detect:player1_crash_detect|state.crash" uses code string "11"
+    Info: State "|LightCycles|crash_detect:player1_crash_detect|state.crash" uses code string "10"
 Info: Selected Minimal Bits state machine encoding method for state machine "|LightCycles|player_velocity_control:player2_velocity|speed:speedal|State"
 Info: Encoding result for state machine "|LightCycles|player_velocity_control:player2_velocity|speed:speedal|State"
     Info: Completed encoding using 2 state bits
@@ -795,19 +777,18 @@ Info: Encoding result for state machine "|LightCycles|game_control:gameplay|stat
     Info: State "|LightCycles|game_control:gameplay|state.play1win" uses code string "0111"
     Info: State "|LightCycles|game_control:gameplay|state.play2win" uses code string "1000"
     Info: State "|LightCycles|game_control:gameplay|state.bothlose" uses code string "1001"
-Warning (14130): Reduced register "crash_detect:player1_crash_detect|state.state_bit_1" with stuck data_in port to stuck value GND
 Warning (14130): Reduced register "crash_detect:player2_crash_detect|state.state_bit_1" with stuck data_in port to stuck value GND
 Info: Duplicate registers merged to single register
-    Info (13350): Duplicate register "player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[0]" merged to single register "player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[0]"
-    Info (13350): Duplicate register "player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[1]" merged to single register "player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[1]"
-    Info (13350): Duplicate register "player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[2]" merged to single register "player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[2]"
-    Info (13350): Duplicate register "player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[3]" merged to single register "player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[3]"
-    Info (13350): Duplicate register "player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[4]" merged to single register "player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[4]"
-    Info (13350): Duplicate register "player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[5]" merged to single register "player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[5]"
-    Info (13350): Duplicate register "player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[6]" merged to single register "player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[6]"
-    Info (13350): Duplicate register "player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[7]" merged to single register "player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[7]"
-    Info (13350): Duplicate register "player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[8]" merged to single register "player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[8]"
-    Info (13350): Duplicate register "player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[9]" merged to single register "player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[9]"
+    Info (13350): Duplicate register "player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[9]" merged to single register "player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[9]"
+    Info (13350): Duplicate register "player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[8]" merged to single register "player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[8]"
+    Info (13350): Duplicate register "player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[7]" merged to single register "player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[7]"
+    Info (13350): Duplicate register "player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[6]" merged to single register "player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[6]"
+    Info (13350): Duplicate register "player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[5]" merged to single register "player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[5]"
+    Info (13350): Duplicate register "player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[4]" merged to single register "player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[4]"
+    Info (13350): Duplicate register "player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[3]" merged to single register "player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[3]"
+    Info (13350): Duplicate register "player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[2]" merged to single register "player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[2]"
+    Info (13350): Duplicate register "player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[1]" merged to single register "player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[1]"
+    Info (13350): Duplicate register "player_velocity_control:player2_velocity|speed:speedal|reg_10:reg_10A|reg_value[0]" merged to single register "player_velocity_control:player1_velocity|speed:speedal|reg_10:reg_10A|reg_value[0]"
 Info: Inferred 2 megafunctions from design logic
     Info: Inferred altshift_taps megafunction from the following design logic: "keyboard:keyboard_entity|reg_11:regA|reg_value[0]~102"
         Info: Parameter NUMBER_OF_TAPS set to 1
@@ -852,7 +833,6 @@ Info: Duplicate registers merged to single register
     Info (13350): Duplicate register "player_velocity_control:player2_velocity|direction:directional|State.left" merged to single register "player_velocity_control:player2_velocity|direction:directional|State.up"
 Warning: Output pins are stuck at VCC or GND
     Warning (13410): Pin "sync" is stuck at GND
-    Warning (13410): Pin "LEDR[4]" is stuck at GND
     Warning (13410): Pin "HEX4[1]" is stuck at GND
     Warning (13410): Pin "HEX5[1]" is stuck at GND
 Critical Warning: Ignored Power-Up Level option on the following registers
@@ -863,15 +843,15 @@ Info: 3 registers lost all their fanouts during netlist optimizations. The first
     Info: Register "crash_detect:player2_crash_detect|state.state_bit_0" lost all its fanouts during netlist optimizations.
     Info: Register "player_velocity_control:player2_velocity|speed:speedal|State.state_bit_0" lost all its fanouts during netlist optimizations.
     Info: Register "player_velocity_control:player2_velocity|speed:speedal|State.state_bit_1" lost all its fanouts during netlist optimizations.
-Info: Implemented 7838 device resources after synthesis - the final resource count might be different
+Info: Implemented 29732 device resources after synthesis - the final resource count might be different
     Info: Implemented 4 input pins
     Info: Implemented 64 output pins
-    Info: Implemented 7768 logic cells
+    Info: Implemented 29662 logic cells
     Info: Implemented 2 RAM segments
-Info: Quartus II Analysis & Synthesis was successful. 0 errors, 102 warnings
-    Info: Peak virtual memory: 265 megabytes
-    Info: Processing ended: Fri Jul 25 01:24:38 2008
-    Info: Elapsed time: 00:26:26
-    Info: Total CPU time (on all processors): 00:26:14
+Info: Quartus II Analysis & Synthesis was successful. 0 errors, 65 warnings
+    Info: Peak virtual memory: 288 megabytes
+    Info: Processing ended: Fri Jul 25 03:46:24 2008
+    Info: Elapsed time: 01:16:19
+    Info: Total CPU time (on all processors): 01:16:03
 
 

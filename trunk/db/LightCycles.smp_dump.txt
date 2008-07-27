@@ -23,7 +23,7 @@ State Machine - |LightCycles|crash_detect:player1_crash_detect|state
 Name state.state_bit_1 state.state_bit_0 
 state.start 0 0 
 state.check 0 1 
-state.crash 1 1 
+state.crash 1 0 
 
 State Machine - |LightCycles|player_velocity_control:player2_velocity|speed:speedal|State
 Name State.state_bit_1 State.state_bit_0 

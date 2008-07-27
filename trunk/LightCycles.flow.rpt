@@ -1,5 +1,5 @@
 Flow report for LightCycles
-Fri Jul 25 01:24:38 2008
+Sat Jul 26 02:29:30 2008
 Quartus II Version 8.0 Build 215 05/29/2008 SJ Web Edition
 
 
@@ -37,7 +37,7 @@ applicable agreement for further details.
 +------------------------------------------------------------------------------+
 ; Flow Summary                                                                 ;
 +------------------------------------+-----------------------------------------+
-; Flow Status                        ; Successful - Fri Jul 25 01:24:37 2008   ;
+; Flow Status                        ; Successful - Fri Jul 25 15:15:09 2008   ;
 ; Quartus II Version                 ; 8.0 Build 215 05/29/2008 SJ Web Edition ;
 ; Revision Name                      ; LightCycles                             ;
 ; Top-level Entity Name              ; LightCycles                             ;
@@ -45,15 +45,15 @@ applicable agreement for further details.
 ; Device                             ; EP2C35F672C6                            ;
 ; Timing Models                      ; Final                                   ;
 ; Met timing requirements            ; N/A                                     ;
-; Total logic elements               ; 7,727                                   ;
-;     Total combinational functions  ; 7,727                                   ;
-;     Dedicated logic registers      ; 4,399                                   ;
-; Total registers                    ; 4399                                    ;
-; Total pins                         ; 68                                      ;
+; Total logic elements               ; 29,652 / 33,216 ( 89 % )                ;
+;     Total combinational functions  ; 29,634 / 33,216 ( 89 % )                ;
+;     Dedicated logic registers      ; 4,400 / 33,216 ( 13 % )                 ;
+; Total registers                    ; 4400                                    ;
+; Total pins                         ; 68 / 475 ( 14 % )                       ;
 ; Total virtual pins                 ; 0                                       ;
-; Total memory bits                  ; 5                                       ;
-; Embedded Multiplier 9-bit elements ; 0                                       ;
-; Total PLLs                         ; 0                                       ;
+; Total memory bits                  ; 5 / 483,840 ( < 1 % )                   ;
+; Embedded Multiplier 9-bit elements ; 0 / 70 ( 0 % )                          ;
+; Total PLLs                         ; 0 / 4 ( 0 % )                           ;
 +------------------------------------+-----------------------------------------+
 
 
@@ -62,7 +62,7 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 07/25/2008 00:58:12 ;
+; Start date & time ; 07/25/2008 02:30:05 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; LightCycles         ;
 +-------------------+---------------------+
@@ -78,7 +78,7 @@ applicable agreement for further details.
 ; ALLOW_ANY_ROM_SIZE_FOR_RECOGNITION              ; On                          ; Off           ; --          ; --         ;
 ; ALLOW_ANY_SHIFT_REGISTER_SIZE_FOR_RECOGNITION   ; On                          ; Off           ; --          ; --         ;
 ; AUTO_SHIFT_REGISTER_RECOGNITION                 ; Always                      ; Auto          ; --          ; --         ;
-; COMPILER_SIGNATURE_ID                           ; 81651320858.121696549202176 ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID                           ; 81651320858.121697100502884 ; --            ; --          ; --         ;
 ; CYCLONEII_OPTIMIZATION_TECHNIQUE                ; Area                        ; Balanced      ; --          ; --         ;
 ; HDL_MESSAGE_LEVEL                               ; Level3                      ; Level2        ; --          ; --         ;
 ; IGNORE_CASCADE_BUFFERS                          ; On                          ; Off           ; --          ; --         ;
@@ -100,8 +100,9 @@ applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:26:18     ; 1.0                     ; 265 MB              ; 00:26:09                           ;
-; Total                ; 00:26:18     ; --                      ; --                  ; 00:26:09                           ;
+; Analysis & Synthesis ; 01:16:03     ; 1.0                     ; 288 MB              ; 01:15:51                           ;
+; Fitter               ; 11:26:38     ; 1.0                     ; 379 MB              ; 11:25:28                           ;
+; Total                ; 12:42:41     ; --                      ; --                  ; 12:41:19                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -109,6 +110,7 @@ applicable agreement for further details.
 ; Flow Log ;
 ------------
 quartus_map --read_settings_files=on --write_settings_files=off LightCycles -c LightCycles
+quartus_fit --read_settings_files=on --write_settings_files=off LightCycles -c LightCycles
 
 
 
