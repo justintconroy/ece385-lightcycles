@@ -44,10 +44,11 @@ entity crash_detect is
 	      Ypos          : out std_logic_vector(9 downto 0);
 	      crashed       : out std_logic;
 	      black_OUT     : out std_logic;
-	      
+
 	      in_start      : out std_logic;
 	      in_check      : out std_logic;
-	      in_crash      : out std_logic
+	      in_crash      : out std_logic;
+	      crashing_sig  : out std_logic
 	    );
 end crash_detect;
 
@@ -182,16 +183,17 @@ begin
 --						end if;
 --				end case;
 --				end if;
+
 			when CRASH =>
-				crashed <= '1';
+				crashed  <= '1';
 				in_crash <= '1';
 		end case;
 		if(crashing='0') then
 			Curr_X <= next_X_pos;
 			Curr_Y <= next_Y_pos;
 		else
-			Curr_X <= DrawX;
-			Curr_Y <= DrawY;
+			Curr_X <= Curr_X;
+			Curr_Y <= Curr_Y;
 		end if;
 	end process;
 

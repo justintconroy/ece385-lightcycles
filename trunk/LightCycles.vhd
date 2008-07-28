@@ -33,10 +33,14 @@ entity LightCycles is
 	      hs            : out std_logic;
 
 	      LEDG          : out std_logic_vector(7 downto 0);
-		  LEDR          : out std_logic_vector(6 downto 0);
+	      LEDR          : out std_logic_vector(7 downto 0);
 
-		  HEX4          : out std_logic_vector(6 downto 0);
-		  HEX5          : out std_logic_vector(6 downto 0)
+	      HEX0          : out std_logic_vector(6 downto 0);
+	      HEX1          : out std_logic_vector(6 downto 0);
+	      HEX2          : out std_logic_vector(6 downto 0);
+	      HEX3          : out std_logic_vector(6 downto 0);
+	      HEX4          : out std_logic_vector(6 downto 0);
+	      HEX5          : out std_logic_vector(6 downto 0)
 	    );
 end LightCycles;
 
@@ -76,7 +80,7 @@ Architecture Behavioral of LightCycles is
 		      DIR          : out std_logic_vector(1 downto 0);
 		      Xpos         : out std_logic_vector(9 downto 0);
 		      Ypos         : out std_logic_vector(9 downto 0);
-			  speed_out    : out std_logic_vector(9 downto 0)
+		      speed_out    : out std_logic_vector(9 downto 0)
 		    );
 	end component;
 
@@ -100,9 +104,10 @@ Architecture Behavioral of LightCycles is
 		      crashed       : out std_logic;
 		      black_OUT     : out std_logic;
 
-			  in_start      : out std_logic;
-			  in_check      : out std_logic;
-			  in_crash      : out std_logic
+		      in_start      : out std_logic;
+		      in_check      : out std_logic;
+		      in_crash      : out std_logic;
+		      crashing_sig  : out std_logic
 		    );
 	end component;
 
@@ -131,7 +136,7 @@ end component;
 	component key_processor is
 		port( clk             : in std_logic;
 		      reset           : in std_logic;
-			  KeyCode         : in std_logic_vector(7 downto 0);
+		      KeyCode         : in std_logic_vector(7 downto 0);
 		      break           : in std_logic;
 
 		      dir_key_Press   : out std_logic_vector(1 downto 0);
@@ -209,7 +214,9 @@ end component;
 		      play2_left_blue    : out std_logic_vector(9 downto 0);
 
 		      play1_wall_front   : out std_logic;
-		      play2_wall_front   : out std_logic
+		      play2_wall_front   : out std_logic;
+		      play1_Grid_X_Out   : out std_logic_vector(7 downto 0);
+		      play1_Grid_Y_Out   : out std_logic_vector(7 downto 0)
             );
 	end component;
 
@@ -334,6 +341,11 @@ end component;
 	signal play1_lives        : std_logic_vector(1 downto 0);
 	signal play2_lives        : std_logic_vector(1 downto 0);
 
+	signal p1_crashing_sig    : std_logic;
+
+	signal play1_Grid_X_Out   : std_logic_vector(7 downto 0);
+	signal play1_Grid_Y_Out   : std_logic_vector(7 downto 0);
+
 	constant play1_Size       : std_logic_vector(9 downto 0) := CONV_STD_LOGIC_VECTOR(1,10);
 	constant play2_Size       : std_logic_vector(9 downto 0) := CONV_STD_LOGIC_VECTOR(1,10);
 
@@ -346,15 +358,15 @@ begin
 		          reset       => reset_h,
 		          crash       => crash_sig,
 		          keypress    => enter,
-				  starter     => starter,
+		          starter     => starter,
 
 		          reset_game  => menu_reset,
 		          reset_round => reset_vehicle,
-				  menu_signal => LEDG(0),
-				  new_round   => LEDG(1),
-				  FIGHT       => LEDG(2),
-				  winner_play1=> LEDR(5),
-				  winner_play2=> LEDR(6),
+		          menu_signal => LEDG(0),
+		          new_round   => LEDG(1),
+		          FIGHT       => LEDG(2),
+		          winner_play1=> LEDR(5),
+		          winner_play2=> LEDR(6),
 
 		          play1_lives => play1_lives,
 		          play2_lives => play2_lives
@@ -368,12 +380,12 @@ begin
 		          Default_Y    => CONV_STD_LOGIC_VECTOR(290,10),
 		          Default_DIR  => "01",
 		          Acceleration => play1_accel,
-				  start        => starter,
+		          start        => starter,
 
 		          DIR          => play1_dir,
 		          Xpos         => play1_X,
 		          Ypos         => play1_Y,
-				  speed_out    => play1_speed
+		          speed_out    => play1_speed
 		        );
 
 	player2_velocity : player_velocity_control
@@ -384,41 +396,42 @@ begin
 		          Default_Y    => CONV_STD_LOGIC_VECTOR(290,10),
 		          Default_DIR  => "10",
 		          Acceleration => play2_accel,
-				  start        => starter,
+		          start        => starter,
 
 		          DIR          => play2_dir,
 		          Xpos         => play2_X,
 		          Ypos         => play2_Y,
-				  speed_out    => play2_speed
+		          speed_out    => play2_speed
 		        );
 
 	player1_crash_detect : crash_detect
-		port map( clk           => pixel_clk,
+		port map( clk           => clk,
 		          reset         => reset_vehicle,
 		          beginning     => starter,
 		          next_X_pos    => play1_X,
 		          next_Y_pos    => play1_Y,
 		          play_Size     => play1_Size,
 		          DIR           => play1_dir,
-				  DrawX         => DrawX,
-				  DrawY         => DrawY,
-				  RED           => Draw_red,
-				  GREEN         => Draw_green,
-				  BLUE          => Draw_blue,
-				  wall_front    => play1_wall_front,
+		          DrawX         => DrawX,
+		          DrawY         => DrawY,
+		          RED           => Draw_red,
+		          GREEN         => Draw_green,
+		          BLUE          => Draw_blue,
+		          wall_front    => play1_wall_front,
 
 		          Xpos          => play1_new_X,
 		          Ypos          => play1_new_Y,
 		          crashed       => crash_sig(1),
-				  black_OUT     => LEDG(6),
+		          black_OUT     => LEDG(6),
 
 		          in_start      => p1_start,
-				  in_check      => p1_check,
-				  in_crash      => p1_crash
+		          in_check      => p1_check,
+		          in_crash      => p1_crash,
+		          crashing_sig  => p1_crashing_sig
 		        );
 
 	player2_crash_detect : crash_detect
-		port map( clk           => pixel_clk,
+		port map( clk           => clk,
 		          reset         => reset_vehicle,
 		          beginning     => starter,
 		          next_X_pos    => play2_X,
@@ -511,17 +524,17 @@ begin
 		          play2_X_pos        => play2_new_X,
 		          play2_Size         => play2_Size,
 
-				  play1_next_X_pos   => play1_X,
-				  play1_next_Y_pos   => play1_Y,
+		          play1_next_X_pos   => play1_X,
+		          play1_next_Y_pos   => play1_Y,
 
-				  play2_next_X_pos   => play2_X,
-				  play2_next_Y_pos   => play2_Y,
+		          play2_next_X_pos   => play2_X,
+		          play2_next_Y_pos   => play2_Y,
 
-				  play1_current_speed=> play1_speed,
-				  play2_current_speed=> play2_speed,
+		          play1_current_speed=> play1_speed,
+		          play2_current_speed=> play2_speed,
 
-				  play1_DIR          => play1_dir,
-				  play2_DIR          => play2_dir,
+		          play1_DIR          => play1_dir,
+		          play2_DIR          => play2_dir,
 
 		          DrawX              => drawX,
 		          DrawY              => drawY,
@@ -562,7 +575,10 @@ begin
 		          play2_left_green   => play2_left_green,
 		          play2_left_blue    => play2_left_blue,
 		          play1_wall_front   => play1_wall_front,
-		          play2_wall_front   => play2_wall_front
+		          play2_wall_front   => play2_wall_front,
+
+		          play1_Grid_X_Out   => play1_Grid_X_Out,
+		          play1_Grid_Y_Out   => play1_Grid_Y_Out
 		        );
 
 		AE : AI
@@ -600,6 +616,26 @@ begin
 		          DrawY     => DrawY
 		        );
 
+		Hex0_ent : HexDriver
+		Port Map( in0       => play1_Grid_X_Out(3 downto 0),
+		          out0      => HEX0
+		        );
+
+		Hex1_ent : HexDriver
+		Port Map( in0       => play1_Grid_X_Out(7 downto 4),
+		          out0      => HEX1
+		        );
+
+		Hex2_ent : HexDriver
+		Port Map( in0       => play1_Grid_Y_Out(3 downto 0),
+		          out0      => HEX2
+		        );
+
+		Hex3_ent : HexDriver
+		Port Map( in0       => play1_Grid_Y_Out(7 downto 4),
+		          out0      => HEX3
+		        );
+
 		Hex4_ent : HexDriver
 		Port Map( in0       => "00" & play1_lives,
 		          out0      => HEX4
@@ -615,16 +651,15 @@ begin
 	Blue    <= Draw_blue;
 	VGA_clk <= pixel_clk;
 
-	LEDG(3) <= enter;
+	LEDG(3) <= p1_crashing_sig;
 	LEDG(5 downto 4) <= play1_dir;
-
 	LEDR(0) <= reset_h;
 	LEDR(1) <= reset_vehicle;
 	LEDR(2) <= p1_start;
 	LEDR(3) <= play1_wall_front;
 	LEDR(4) <= play2_wall_front;
+	LEDR(7) <= p1_crash;
 
 	vs      <= vsSig;
-
 
 end Behavioral;
