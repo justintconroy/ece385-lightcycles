@@ -89,7 +89,10 @@ entity color_map_dummy is
 	      play2_left_blue    : out std_logic_vector(9 downto 0);
 
 	      play1_wall_front   : out std_logic;
-	      play2_wall_front   : out std_logic
+	      play2_wall_front   : out std_logic;
+
+	      play1_Grid_X_Out   : out std_logic_vector(7 downto 0);
+	      play1_Grid_Y_Out   : out std_logic_vector(7 downto 0)
         );
 end color_map_dummy;
 
@@ -163,33 +166,38 @@ constant play2_Size_int : integer := 1;
 --signal play1_wall_f     : std_logic_vector(9 downto 0);
 --signal play2_wall_f     : std_logic_vector(9 downto 0);
 
-signal play1_X          : integer range -1 to X_Size+1;
-signal play1_Y          : integer range -1 to Y_Size+1;
-signal play2_X          : integer range -1 to X_Size+1;
-signal play2_Y          : integer range -1 to Y_Size+1;
+signal play1_X          : integer range -1 to 65;
+signal play1_Y          : integer range -1 to 65;
+signal play2_X          : integer range -1 to 65;
+signal play2_Y          : integer range -1 to 65;
 
-signal play1_check_X    : integer range 0 to X_Size+1;
-signal play1_check_Y    : integer range 0 to Y_Size+1;
-signal play2_check_X    : integer range 0 to X_Size+1;
-signal play2_check_Y    : integer range 0 to Y_Size+1;
+signal play1_check_X    : integer range -1 to 65;
+signal play1_check_Y    : integer range -1 to 65;
+signal play2_check_X    : integer range -1 to 65;
+signal play2_check_Y    : integer range -1 to 65;
 
 signal temp1            : integer range 0 to MAX_SPEED;
 signal temp1_in         : integer range 0 to MAX_SPEED;
 signal load_temp1       : std_logic;
+signal play1_Grid_X     : integer range -1 to 65;
+signal play1_Grid_Y     : integer range -1 to 65;
 
 
 begin
 
-	GridX      <= (DrawX - ARENA_X_MIN);
-	GridY      <= (DrawY - ARENA_Y_MIN);
+	GridX        <= (DrawX - ARENA_X_MIN);
+	GridY        <= (DrawY - ARENA_Y_MIN);
 
-	Grid_X     <= CONV_INTEGER(unsigned(GridX(9 downto 2)));
-	Grid_Y     <= CONV_INTEGER(unsigned(GridY(9 downto 2)));
+	Grid_X       <= CONV_INTEGER(unsigned(GridX(9 downto 2)));
+	Grid_Y       <= CONV_INTEGER(unsigned(GridY(9 downto 2)));
 
-	play1_X    <= CONV_INTEGER(unsigned(Grid_X-play1_X_pos));
-	play1_Y    <= CONV_INTEGER(unsigned(Grid_Y-play1_Y_pos));
-	play2_X    <= CONV_INTEGER(unsigned(Grid_X-play2_X_pos));
-	play2_Y    <= CONV_INTEGER(unsigned(Grid_Y-play2_Y_pos));
+	play1_X      <= CONV_INTEGER(unsigned(GridX-play1_X_pos));
+	play1_Y      <= CONV_INTEGER(unsigned(GridY-play1_Y_pos));
+	play2_X      <= CONV_INTEGER(unsigned(GridX-play2_X_pos));
+	play2_Y      <= CONV_INTEGER(unsigned(GridY-play2_Y_pos));
+
+	play1_Grid_X <= CONV_INTEGER(signed(play1_X_pos(9 downto 2) - ARENA_X_MIN(9 downto 2)));
+	play1_Grid_Y <= CONV_INTEGER(signed(play1_Y_pos(9 downto 2) - ARENA_Y_MIN(9 downto 2)));
 
 	temp_reg_1 : reg_int
 	Port Map( Clk    => Clk,
@@ -257,10 +265,12 @@ begin
 		end if;
 	end process;
 
+
+	--process for filling the array, register style!
 	cell : process(Reset,Clk,load_cell,new_color,cell_color)
 	begin
 		if (Reset = '1') then
-			for i in X_Size downto 0 loop
+			for i in X_size downto 0 loop
 				for j in Y_Size downto 0 loop
 					cell_color(i,j) <= '0';
 				end loop;
@@ -274,71 +284,73 @@ begin
 		end if;
 	end process;
 
+	--maps out the HUD, arena, and filler stuff to the VGA controller
 	mapper : process(Reset,Grid_X,Grid_Y,DrawX,DrawY,play1_on,play2_on,cell_color)
-
 	begin
 		--default
 		RED   <= "0000000000";
 		GREEN <= "0000000000";
 		BLUE  <= "0000000000";
 
-			--top area (HUD)
-			if ((DrawY <= HUD_MAX) and (DrawY >= SCREEN_Y_MIN)) then 
-				RED   <= "0000000000";
-				GREEN <= "0000000000";
-				BLUE  <= "0000000000";
-			--top border of arena
-			elsif ((DrawY <= ARENA_Y_MIN ) and (DrawY >= HUD_MAX)) then 
+		--top area (HUD)
+		if ((DrawY <= HUD_MAX) and (DrawY >= SCREEN_Y_MIN)) then 
+			RED   <= "0000000000";
+			GREEN <= "0000000000";
+			BLUE  <= "0000000000";
+		--top border of arena
+		elsif ((DrawY <= ARENA_Y_MIN ) and (DrawY >= HUD_MAX)) then 
+			RED   <= "1111111111";
+			GREEN <= "1111111111";
+			BLUE  <= "1111111111";
+		--middle area
+		elsif ((DrawY <= ARENA_Y_MAX ) and (DrawY >= ARENA_Y_MIN)) then 
+			if (DrawX <= ARENA_X_MAX) AND (DrawX >= ARENA_X_MIN) then 
+				--This is the arena.  It checks the color of a cell
+					--in the array cell_color and maps it to a location
+					--on the screen.
+				case cell_color(Grid_X,Grid_Y) is
+					when BLACK =>
+						red    <= "0000000000";
+						green  <= "0000000000";
+						blue   <= "0000000000";
+--					when REDc =>
+--						red    <= "1111111111";
+--						green  <= "0000000000";
+--						blue   <= "0000000000";
+					when BLUEc =>
+						red    <= "0000000000";
+						green  <= "0000000000";
+						blue   <= "1111111111";
+--					when WHITE =>
+--						red    <= "1111111111";
+--						green  <= "1111111111";
+--						blue   <= "1111111111";
+--					when others =>
+--						red    <= "0000000000";
+--						green  <= "0000000000";
+--						blue   <= "0000000000";
+				end case;
+			--left border of arena
+			elsif ((DrawX <= ARENA_X_MIN) AND (DrawX >= SCREEN_X_MIN)) then 
 				RED   <= "1111111111";
 				GREEN <= "1111111111";
 				BLUE  <= "1111111111";
-			--middle area
-			elsif ((DrawY <= ARENA_Y_MAX ) and (DrawY >= ARENA_Y_MIN)) then 
-				if (DrawX <= ARENA_X_MAX) AND (DrawX >= ARENA_X_MIN) then 
-
-					case cell_color(Grid_X,Grid_Y) is
-						when BLACK =>
-							red    <= "0000000000";
-							green  <= "0000000000";
-							blue   <= "0000000000";
---						when REDc =>
---							red    <= "1111111111";
---							green  <= "0000000000";
---							blue   <= "0000000000";
-						when BLUEc =>
-							red    <= "0000000000";
-							green  <= "0000000000";
-							blue   <= "1111111111";
---						when WHITE =>
---							red    <= "1111111111";
---							green  <= "1111111111";
---							blue   <= "1111111111";
---						when others =>
---							red    <= "0000000000";
---							green  <= "0000000000";
---							blue   <= "0000000000";
-					end case;
-				--left border of arena
-				elsif ((DrawX <= ARENA_X_MIN) AND (DrawX >= SCREEN_X_MIN)) then 
-					RED   <= "1111111111";
-					GREEN <= "1111111111";
-					BLUE  <= "1111111111";
-				--right border of arena
-				elsif ((DrawX <= SCREEN_X_MAX) and (DrawX >= ARENA_X_MAX)) then 
-					RED   <= "1111111111";
-					GREEN <= "1111111111";
-					BLUE  <= "1111111111";
-				--arena
-				end if;
-
-			--bottom border of arena
-			elsif ((DrawY <= SCREEN_Y_MAX) AND (DrawY >= ARENA_Y_MAX)) then
+			--right border of arena
+			elsif ((DrawX <= SCREEN_X_MAX) and (DrawX >= ARENA_X_MAX)) then 
 				RED   <= "1111111111";
 				GREEN <= "1111111111";
 				BLUE  <= "1111111111";
 			end if;
-		end process;
 
+		--bottom border of arena
+		elsif ((DrawY <= SCREEN_Y_MAX) AND (DrawY >= ARENA_Y_MAX)) then
+			RED   <= "1111111111";
+			GREEN <= "1111111111";
+			BLUE  <= "1111111111";
+		end if;
+	end process;
+
+	--state machine controller
 	control_reg: process (reset, clk, next_state)
 	begin
 		if (reset = '1') then
@@ -348,11 +360,14 @@ begin
 		end if;
 	end process;
 
+	--controls which state we go to next for the state machine
 	get_next_state : process (clk,state)
 	begin
 		case state is
+			--in state A, we go to state B next
 			when A =>
 				next_state <= B;
+			--in state B, we loop around back to A
 			when B =>
 				next_state <= A;
 		end case;
@@ -365,29 +380,31 @@ begin
 	check_play1 : process(play1_check_X,play1_check_Y,cell_color)
 	begin
 		play1_wall_front <= '0';
-		if((play1_check_X > X_size) AND (play1_check_Y > Y_size)) then
-			play1_wall_front <= '1';
-		elsif(cell_color(play1_check_X,play1_check_Y) = '1') then
-			play1_wall_front <= '1';
+		if (state = B) then
+			if((play1_check_X > 128) OR (play1_check_Y > 128) OR (play1_check_X < 0) OR (play1_check_Y < 0)) then
+				play1_wall_front <= '1';
+			elsif(cell_color(play1_check_X,play1_check_Y) = BLUEc) then
+				play1_wall_front <= '1';
+			end if;
 		end if;
 	end process;
 
 	--generates an X and Y position to be checked for a wall.  We will go
 		--through each of the positions on the grid between the current
 		--position and the next position, based on current speed.
-	play1_wall_check : process(play1_DIR,play1_X,play1_Y,play1_next_X_pos,play1_next_Y_pos,play1_current_speed,state,temp1)
+	play1_wall_check : process(play1_Grid_X,play1_Grid_Y,play1_DIR,play1_X,play1_Y,play1_next_X_pos,play1_next_Y_pos,play1_current_speed,state,temp1)
 	begin
-
 --		play1_wall_f     <= CONV_STD_LOGIC_VECTOR(0,10);
 --		play1_wall_front <= '0';
-		play1_check_X    <= Grid_X;
-		play1_check_Y    <= Grid_Y;
-		temp1_in         <=  0;
-		load_temp1       <= '1';
+		play1_check_X    <= play1_Grid_X+play1_Size_int+1;
+		play1_check_Y    <= play1_Grid_Y+play1_Size_int+1;
+		temp1_in         <= play1_Size_int+1;
+		load_temp1       <= '0';
 
+		--if the next position is outside the bounds of the arena, we crashed
 		if((play1_next_X_pos >= ARENA_X_MAX) OR (play1_next_X_pos <= ARENA_X_MIN) OR (play1_next_Y_pos >= ARENA_Y_MAX) OR (play1_next_Y_pos <= ARENA_Y_MIN)) then
-			play1_check_X <= X_size + 1;
-			play1_check_Y <= Y_size + 1;
+			play1_check_X <= -1;
+			play1_check_Y <= -1;
 		else
 			--We use a state machine to check each of the positions
 				--sequentially rather than at the same time.  This method
@@ -398,19 +415,20 @@ begin
 						--what direction we're going.
 					case play1_DIR is
 						when UP =>
-							play1_check_Y <= play1_Y - temp1;
+							play1_check_Y <= play1_Grid_Y - temp1;
 						when DOWN =>
-							play1_check_Y <= play1_Y + temp1;
+							play1_check_Y <= play1_Grid_Y + temp1;
 						when LEFT =>
-							play1_check_X <= play1_X - temp1;
+							play1_check_X <= play1_Grid_X - temp1;
 						when RIGHT =>
-							play1_check_X <= play1_X + temp1;
+							play1_check_X <= play1_Grid_X + temp1;
 					end case;
 				--increment counter
 				when B =>
 					load_temp1  <= '1';
 					if (temp1 >= play1_current_speed) then
-						temp1_in    <= play1_Size_int;
+						temp1_in    <= play1_Size_int+1;
+						play1_check_y <= 
 					else
 						temp1_in    <= temp1 + 1;
 					end if;
@@ -519,4 +537,6 @@ begin
 	      play2_left_green  <= "0000000000";
 	      play2_left_blue   <= "0000000000";
 
+	      play1_Grid_X_Out  <= CONV_STD_LOGIC_VECTOR(play1_Grid_X,8);
+	      play1_Grid_Y_Out  <= CONV_STD_LOGIC_VECTOR(play1_Grid_Y,8);
 End Behavioral;
