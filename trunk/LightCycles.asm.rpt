@@ -1,5 +1,5 @@
 Assembler report for LightCycles
-Sun Jul 27 09:32:04 2008
+Sun Jul 27 22:08:29 2008
 Quartus II Version 8.0 Build 231 07/10/2008 Service Pack 1 SJ Web Edition
 
 
@@ -38,7 +38,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Sun Jul 27 09:32:04 2008 ;
+; Assembler Status      ; Successful - Sun Jul 27 22:08:29 2008 ;
 ; Revision Name         ; LightCycles                           ;
 ; Top-level Entity Name ; LightCycles                           ;
 ; Family                ; Cyclone II                            ;
@@ -94,7 +94,7 @@ applicable agreement for further details.
 +----------------+-------------------------------------------------------------------+
 ; Device         ; EP2C35F672C6                                                      ;
 ; JTAG usercode  ; 0xFFFFFFFF                                                        ;
-; Checksum       ; 0x00B6D8F8                                                        ;
+; Checksum       ; 0x00B2CBF7                                                        ;
 +----------------+-------------------------------------------------------------------+
 
 
@@ -105,7 +105,7 @@ applicable agreement for further details.
 +--------------------+---------------------------------------------------------------+
 ; Device             ; EPCS16                                                        ;
 ; JTAG usercode      ; 0x00000000                                                    ;
-; Checksum           ; 0x1BB12B14                                                    ;
+; Checksum           ; 0x1BB87723                                                    ;
 ; Compression Ratio  ; 2                                                             ;
 +--------------------+---------------------------------------------------------------+
 
@@ -116,14 +116,14 @@ applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II Assembler
     Info: Version 8.0 Build 231 07/10/2008 Service Pack 1 SJ Web Edition
-    Info: Processing started: Sun Jul 27 09:31:50 2008
+    Info: Processing started: Sun Jul 27 22:08:20 2008
 Info: Command: quartus_asm --read_settings_files=on --write_settings_files=off LightCycles -c LightCycles
 Info: Writing out detailed assembly data for power analysis
 Info: Assembler is generating device programming files
 Info: Quartus II Assembler was successful. 0 errors, 0 warnings
     Info: Peak virtual memory: 222 megabytes
-    Info: Processing ended: Sun Jul 27 09:32:04 2008
-    Info: Elapsed time: 00:00:14
-    Info: Total CPU time (on all processors): 00:00:08
+    Info: Processing ended: Sun Jul 27 22:08:29 2008
+    Info: Elapsed time: 00:00:09
+    Info: Total CPU time (on all processors): 00:00:07
 
 

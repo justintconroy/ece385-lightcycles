@@ -25,12 +25,12 @@ entity color_map_dummy is
 	      Reset              : in std_logic;
 
 	      play1_Y_pos        : in std_logic_vector(9 downto 0);
-          play1_X_pos        : in std_logic_vector(9 downto 0);
-          play1_Size         : in std_logic_vector(9 downto 0);
+	      play1_X_pos        : in std_logic_vector(9 downto 0);
+	      play1_Size         : in std_logic_vector(9 downto 0);
 
 	      play2_Y_pos        : in std_logic_vector(9 downto 0);
-          play2_X_pos        : in std_logic_vector(9 downto 0);
-          play2_Size         : in std_logic_vector(9 downto 0);
+	      play2_X_pos        : in std_logic_vector(9 downto 0);
+	      play2_Size         : in std_logic_vector(9 downto 0);
 
 	      play1_next_X_pos   : in std_logic_vector(9 downto 0);
 	      play1_next_Y_pos   : in std_logic_vector(9 downto 0);
@@ -90,7 +90,7 @@ entity color_map_dummy is
 
 	      play1_wall_front   : out std_logic;
 	      play2_wall_front   : out std_logic
-            );
+        );
 end color_map_dummy;
 
 architecture Behavioral of color_map_dummy is
@@ -104,58 +104,58 @@ architecture Behavioral of color_map_dummy is
 		    );
 	end component;
 
-constant X_size : integer := 64; --79;
-constant Y_size : integer := 64; --59;
+constant X_size         : integer := 64; --79;
+constant Y_size         : integer := 64; --59;
 
-constant ARENA_X_MIN  : std_logic_vector(9 downto 0) := CONV_STD_LOGIC_VECTOR(191,10);
-constant ARENA_X_MAX  : std_logic_vector(9 downto 0) := CONV_STD_LOGIC_VECTOR(447,10);
-constant ARENA_Y_MIN  : std_logic_vector(9 downto 0) := CONV_STD_LOGIC_VECTOR(161,10);
-constant ARENA_Y_MAX  : std_logic_vector(9 downto 0) := CONV_STD_LOGIC_VECTOR(417,10);
-constant HUD_MAX      : std_logic_vector(9 downto 0) := CONV_STD_LOGIC_VECTOR( 99,10);
+constant ARENA_X_MIN    : std_logic_vector(9 downto 0) := CONV_STD_LOGIC_VECTOR(191,10);
+constant ARENA_X_MAX    : std_logic_vector(9 downto 0) := CONV_STD_LOGIC_VECTOR(447,10);
+constant ARENA_Y_MIN    : std_logic_vector(9 downto 0) := CONV_STD_LOGIC_VECTOR(161,10);
+constant ARENA_Y_MAX    : std_logic_vector(9 downto 0) := CONV_STD_LOGIC_VECTOR(417,10);
+constant HUD_MAX        : std_logic_vector(9 downto 0) := CONV_STD_LOGIC_VECTOR( 99,10);
 
-constant SCREEN_X_MIN : std_logic_vector(9 downto 0) := CONV_STD_LOGIC_VECTOR(  0,10);
-constant SCREEN_X_MAX : std_logic_vector(9 downto 0) := CONV_STD_LOGIC_VECTOR(639,10);
-constant SCREEN_Y_MIN : std_logic_vector(9 downto 0) := CONV_STD_LOGIC_VECTOR(  0,10);
-constant SCREEN_Y_MAX : std_logic_vector(9 downto 0) := CONV_STD_LOGIC_VECTOR(479,10);
+constant SCREEN_X_MIN   : std_logic_vector(9 downto 0) := CONV_STD_LOGIC_VECTOR(  0,10);
+constant SCREEN_X_MAX   : std_logic_vector(9 downto 0) := CONV_STD_LOGIC_VECTOR(639,10);
+constant SCREEN_Y_MIN   : std_logic_vector(9 downto 0) := CONV_STD_LOGIC_VECTOR(  0,10);
+constant SCREEN_Y_MAX   : std_logic_vector(9 downto 0) := CONV_STD_LOGIC_VECTOR(479,10);
 
 
 --colors
---constant BLACK  : std_logic_vector(1 downto 0) :="00";
---constant REDc   : std_logic_vector(1 downto 0) :="01";
---constant BLUEc  : std_logic_vector(1 downto 0) :="10";
---constant WHITE  : std_logic_vector(1 downto 0) :="11";
-constant BLACK : std_logic := '0';
-constant BLUEc : std_logic := '1';
+--constant BLACK          : std_logic_vector(1 downto 0) :="00";
+--constant REDc           : std_logic_vector(1 downto 0) :="01";
+--constant BLUEc          : std_logic_vector(1 downto 0) :="10";
+--constant WHITE          : std_logic_vector(1 downto 0) :="11";
+constant BLACK          : std_logic := '0';
+constant BLUEc          : std_logic := '1';
 
 --Color of Player 1 currently set to blue 
-constant PLAYER1_COLOR   : std_logic := BLUEc;
+constant PLAYER1_COLOR  : std_logic := BLUEc;
 
 --Color of Player 2 currently set to not(red) 
-constant PLAYER2_COLOR   : std_logic := BLUEc; --REDc;
+constant PLAYER2_COLOR  : std_logic := BLUEc; --REDc;
 
-constant MAX_SPEED : integer := 10;
+constant MAX_SPEED      : integer := 10;
 
-constant UP     : std_logic_vector(1 downto 0) := "11";
-constant DOWN   : std_logic_vector(1 downto 0) := "00";
-constant RIGHT  : std_logic_vector(1 downto 0) := "01";
-constant LEFT   : std_logic_vector(1 downto 0) := "10";
+constant UP             : std_logic_vector(1 downto 0) := "11";
+constant DOWN           : std_logic_vector(1 downto 0) := "00";
+constant RIGHT          : std_logic_vector(1 downto 0) := "01";
+constant LEFT           : std_logic_vector(1 downto 0) := "10";
 
 type arena_type is array (integer range 0 to X_size, integer range 0 to Y_size) of std_logic;
-signal cell_color        : arena_type;
+signal cell_color       : arena_type;
 
 type ctrl_state is (A,B);
-signal state,next_state:ctrl_state;
+signal state,next_state : ctrl_state;
 
-signal draw_X    : integer range 0 to 639;
-signal draw_Y    : integer range 0 to 479;
+signal Grid_X           : integer range 0 to 639;
+signal Grid_Y           : integer range 0 to 479;
 
-signal GridX, GridY      : std_logic_vector(9 downto 0);
+signal GridX, GridY     : std_logic_vector(9 downto 0);
 
-signal play1_on : std_logic;
-signal play2_on : std_logic;
+signal play1_on         : std_logic;
+signal play2_on         : std_logic;
 
-signal load_cell : std_logic;
-signal new_color : std_logic;
+signal load_cell        : std_logic;
+signal new_color        : std_logic;
 
 constant play1_Size_int : integer := 1;
 constant play2_Size_int : integer := 1;
@@ -180,16 +180,16 @@ signal load_temp1       : std_logic;
 
 begin
 
-	GridX <= (DrawX - ARENA_X_MIN);
-	GridY <= (DrawY - ARENA_Y_MIN);
+	GridX      <= (DrawX - ARENA_X_MIN);
+	GridY      <= (DrawY - ARENA_Y_MIN);
 
-	draw_X <= CONV_INTEGER(unsigned(GridX(9 downto 2)));
-	draw_Y <= CONV_INTEGER(unsigned(GridY(9 downto 2)));
+	Grid_X     <= CONV_INTEGER(unsigned(GridX(9 downto 2)));
+	Grid_Y     <= CONV_INTEGER(unsigned(GridY(9 downto 2)));
 
-	play1_X <= CONV_INTEGER(unsigned(play1_X_pos));
-	play1_Y <= CONV_INTEGER(unsigned(play1_Y_pos));
-	play2_X <= CONV_INTEGER(unsigned(play2_X_pos));
-	play2_Y <= CONV_INTEGER(unsigned(play2_Y_pos));
+	play1_X    <= CONV_INTEGER(unsigned(Grid_X-play1_X_pos));
+	play1_Y    <= CONV_INTEGER(unsigned(Grid_Y-play1_Y_pos));
+	play2_X    <= CONV_INTEGER(unsigned(Grid_X-play2_X_pos));
+	play2_Y    <= CONV_INTEGER(unsigned(Grid_Y-play2_Y_pos));
 
 	temp_reg_1 : reg_int
 	Port Map( Clk    => Clk,
@@ -200,9 +200,9 @@ begin
 	        );
 
 
---	colors : process(draw_X,draw_Y,cell_color)
+--	colors : process(Grid_X,Grid_Y,cell_color)
 --	begin
---		case cell_color(draw_X,draw_Y) is
+--		case cell_color(Grid_X,Grid_Y) is
 --			when BLACK =>
 --				red    <= "0000000000";
 --				green  <= "0000000000";
@@ -241,7 +241,7 @@ begin
 			play2_on <= '0';
 		end if;
 	end process;
-	
+
 	--some sort of process for filling the array
 	cell_fill : process(play1_on,play2_on)
 	begin
@@ -249,11 +249,11 @@ begin
 		new_color <= BLACK;
 		if(play1_on = '1') then
 			new_color  <= PLAYER1_COLOR;
-			load_cell <= '1';
-		
+			load_cell  <= '1';
+
 		elsif(play2_on = '1') then
 			new_color  <= PLAYER2_COLOR;
-			load_cell <= '1';
+			load_cell  <= '1';
 		end if;
 	end process;
 
@@ -267,21 +267,21 @@ begin
 			end loop;
 		elsif (rising_edge(Clk)) then
 			if (load_cell = '1') then 
-				cell_color(draw_X,draw_Y) <= new_color;     
+				cell_color(Grid_X,Grid_Y) <= new_color;
 			else
-				cell_color(draw_X,draw_Y) <= cell_color(draw_X,draw_Y);
+				cell_color(Grid_X,Grid_Y) <= cell_color(Grid_X,Grid_Y);
 			end if;
 		end if;
 	end process;
-	
-	mapper : process(Reset,draw_X,draw_Y,DrawX,DrawY,play1_on,play2_on,cell_color)
-	
+
+	mapper : process(Reset,Grid_X,Grid_Y,DrawX,DrawY,play1_on,play2_on,cell_color)
+
 	begin
 		--default
 		RED   <= "0000000000";
 		GREEN <= "0000000000";
 		BLUE  <= "0000000000";
-		
+
 			--top area (HUD)
 			if ((DrawY <= HUD_MAX) and (DrawY >= SCREEN_Y_MIN)) then 
 				RED   <= "0000000000";
@@ -296,7 +296,7 @@ begin
 			elsif ((DrawY <= ARENA_Y_MAX ) and (DrawY >= ARENA_Y_MIN)) then 
 				if (DrawX <= ARENA_X_MAX) AND (DrawX >= ARENA_X_MIN) then 
 
-					case cell_color(draw_X,draw_Y) is
+					case cell_color(Grid_X,Grid_Y) is
 						when BLACK =>
 							red    <= "0000000000";
 							green  <= "0000000000";
@@ -337,9 +337,7 @@ begin
 				GREEN <= "1111111111";
 				BLUE  <= "1111111111";
 			end if;
-
 		end process;
-
 
 	control_reg: process (reset, clk, next_state)
 	begin
@@ -360,6 +358,10 @@ begin
 		end case;
 	end process;
 
+	--checks an x and y position in array to see if it's clear
+		--if it is, then there is no wall there, so play1_wall_front is 0
+		--otherwise there is a wall there and we need to let the crash_detector
+		--know so we can crash.
 	check_play1 : process(play1_check_X,play1_check_Y,cell_color)
 	begin
 		play1_wall_front <= '0';
@@ -370,22 +372,30 @@ begin
 		end if;
 	end process;
 
+	--generates an X and Y position to be checked for a wall.  We will go
+		--through each of the positions on the grid between the current
+		--position and the next position, based on current speed.
 	play1_wall_check : process(play1_DIR,play1_X,play1_Y,play1_next_X_pos,play1_next_Y_pos,play1_current_speed,state,temp1)
 	begin
 
 --		play1_wall_f     <= CONV_STD_LOGIC_VECTOR(0,10);
 --		play1_wall_front <= '0';
-		play1_check_X    <= Play1_X;
-		play1_check_Y    <= Play1_Y;
-		temp1_in         <= 0;
+		play1_check_X    <= Grid_X;
+		play1_check_Y    <= Grid_Y;
+		temp1_in         <=  0;
 		load_temp1       <= '1';
-		
+
 		if((play1_next_X_pos >= ARENA_X_MAX) OR (play1_next_X_pos <= ARENA_X_MIN) OR (play1_next_Y_pos >= ARENA_Y_MAX) OR (play1_next_Y_pos <= ARENA_Y_MIN)) then
 			play1_check_X <= X_size + 1;
 			play1_check_Y <= Y_size + 1;
 		else
+			--We use a state machine to check each of the positions
+				--sequentially rather than at the same time.  This method
+				--generates significantly less logic on the FPGA.
 			case state is
 				when A =>
+					--The X and Y positions we want to check depends on
+						--what direction we're going.
 					case play1_DIR is
 						when UP =>
 							play1_check_Y <= play1_Y - temp1;
@@ -396,6 +406,7 @@ begin
 						when RIGHT =>
 							play1_check_X <= play1_X + temp1;
 					end case;
+				--increment counter
 				when B =>
 					load_temp1  <= '1';
 					if (temp1 >= play1_current_speed) then

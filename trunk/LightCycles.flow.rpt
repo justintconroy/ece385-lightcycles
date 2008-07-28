@@ -1,5 +1,5 @@
 Flow report for LightCycles
-Sun Jul 27 09:32:04 2008
+Sun Jul 27 22:08:29 2008
 Quartus II Version 8.0 Build 231 07/10/2008 Service Pack 1 SJ Web Edition
 
 
@@ -37,7 +37,7 @@ applicable agreement for further details.
 +-----------------------------------------------------------------------------------+
 ; Flow Summary                                                                      ;
 +------------------------------------+----------------------------------------------+
-; Flow Status                        ; Successful - Sun Jul 27 09:32:04 2008        ;
+; Flow Status                        ; Successful - Sun Jul 27 22:08:29 2008        ;
 ; Quartus II Version                 ; 8.0 Build 231 07/10/2008 SP 1 SJ Web Edition ;
 ; Revision Name                      ; LightCycles                                  ;
 ; Top-level Entity Name              ; LightCycles                                  ;
@@ -45,8 +45,8 @@ applicable agreement for further details.
 ; Device                             ; EP2C35F672C6                                 ;
 ; Timing Models                      ; Final                                        ;
 ; Met timing requirements            ; N/A                                          ;
-; Total logic elements               ; 10,677 / 33,216 ( 32 % )                     ;
-;     Total combinational functions  ; 10,665 / 33,216 ( 32 % )                     ;
+; Total logic elements               ; 10,692 / 33,216 ( 32 % )                     ;
+;     Total combinational functions  ; 10,679 / 33,216 ( 32 % )                     ;
 ;     Dedicated logic registers      ; 4,405 / 33,216 ( 13 % )                      ;
 ; Total registers                    ; 4405                                         ;
 ; Total pins                         ; 68 / 475 ( 14 % )                            ;
@@ -62,7 +62,7 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 07/27/2008 08:16:12 ;
+; Start date & time ; 07/27/2008 20:38:02 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; LightCycles         ;
 +-------------------+---------------------+
@@ -78,7 +78,7 @@ applicable agreement for further details.
 ; ALLOW_ANY_ROM_SIZE_FOR_RECOGNITION              ; On                          ; Off           ; --          ; --         ;
 ; ALLOW_ANY_SHIFT_REGISTER_SIZE_FOR_RECOGNITION   ; On                          ; Off           ; --          ; --         ;
 ; AUTO_SHIFT_REGISTER_RECOGNITION                 ; Always                      ; Auto          ; --          ; --         ;
-; COMPILER_SIGNATURE_ID                           ; 81651320858.121716457201404 ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID                           ; 81651320858.121720907202612 ; --            ; --          ; --         ;
 ; CYCLONEII_OPTIMIZATION_TECHNIQUE                ; Area                        ; Balanced      ; --          ; --         ;
 ; HDL_MESSAGE_LEVEL                               ; Level3                      ; Level2        ; --          ; --         ;
 ; IGNORE_CASCADE_BUFFERS                          ; On                          ; Off           ; --          ; --         ;
@@ -100,10 +100,10 @@ applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:28:51     ; 1.0                     ; 265 MB              ; 00:28:15                           ;
-; Fitter               ; 00:09:18     ; 1.0                     ; 301 MB              ; 00:08:35                           ;
-; Assembler            ; 00:00:14     ; 1.0                     ; 222 MB              ; 00:00:08                           ;
-; Total                ; 00:38:23     ; --                      ; --                  ; 00:36:58                           ;
+; Analysis & Synthesis ; 00:27:13     ; 1.0                     ; 278 MB              ; 00:26:48                           ;
+; Fitter               ; 00:08:34     ; 1.0                     ; 313 MB              ; 00:08:19                           ;
+; Assembler            ; 00:00:09     ; 1.0                     ; 222 MB              ; 00:00:07                           ;
+; Total                ; 00:35:56     ; --                      ; --                  ; 00:35:14                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
