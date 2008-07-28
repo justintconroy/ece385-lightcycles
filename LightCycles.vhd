@@ -561,13 +561,13 @@ begin
 		          play2_left_red     => play2_left_red,
 		          play2_left_green   => play2_left_green,
 		          play2_left_blue    => play2_left_blue,
-				  play1_wall_front   => play1_wall_front,
-				  play2_wall_front   => play2_wall_front
+		          play1_wall_front   => play1_wall_front,
+		          play2_wall_front   => play2_wall_front
 		        );
 
 		AE : AI
 		Port Map( clk               => clk,
-			      DIR               => comp_dir,
+		          DIR               => comp_dir,
 
 		          play_right_red    => play2_right_red,
 		          play_right_green  => play2_right_green,
@@ -603,12 +603,12 @@ begin
 		Hex4_ent : HexDriver
 		Port Map( in0       => "00" & play1_lives,
 		          out0      => HEX4
-				);
+		        );
 
 		Hex5_ent : HexDriver
 		Port Map( in0       => "00" & play2_lives,
 		          out0      => HEX5
-				);
+		        );
 
 	Red     <= Draw_red;
 	Green   <= Draw_green;
@@ -621,8 +621,8 @@ begin
 	LEDR(0) <= reset_h;
 	LEDR(1) <= reset_vehicle;
 	LEDR(2) <= p1_start;
-	LEDR(3) <= p1_check;
-	LEDR(4) <= p1_crash;
+	LEDR(3) <= play1_wall_front;
+	LEDR(4) <= play2_wall_front;
 
 	vs      <= vsSig;
 
